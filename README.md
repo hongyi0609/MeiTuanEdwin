@@ -12,11 +12,11 @@
 
 ##  screen shot for iOS
 
-<img src="https://github.com/huanxsd/MeiTuan/blob/master/screenshot/iOS_0.png">
+<!-- <img src="https://github.com/huanxsd/MeiTuan/blob/master/screenshot/iOS_0.png">
 
 <img src="https://github.com/huanxsd/MeiTuan/blob/master/screenshot/iOS_1.png">
 
-<img src="https://github.com/huanxsd/MeiTuan/blob/master/screenshot/iOS_2.png">
+<img src="https://github.com/huanxsd/MeiTuan/blob/master/screenshot/iOS_2.png"> -->
 
 ## screen shot for Android
 
@@ -31,8 +31,9 @@
 1. **Clone the repo**
 
 ```
-$ git clone https://github.com/huanxsd/MeiTuan.git
-$ cd MeiTuan
+$ git clone git@github.com:hongyi0609/MeiTuanEdwin.git
+$ cd MeiTuanEdwin
+$ git checkout -b local
 ```
 
 2. **Install dependencies** (npm v3+):
@@ -65,8 +66,8 @@ $ react-native start
 
 ## Contact
 
-If you have any suggestions, leave a message here
-[简书](http://www.jianshu.com/p/9211f42d5c25)
+<!-- If you have any suggestions, leave a message here
+[简书](http://www.jianshu.com/p/9211f42d5c25) -->
 
 ## At last
 
@@ -113,8 +114,9 @@ App中很多页面都使用了同一个网络接口，这不是为了让代码�
 1. **Clone the repo**
 
 ```
-$ git clone https://github.com/huanxsd/MeiTuan.git
-$ cd MeiTuan
+$ git clone git@github.com:hongyi0609/MeiTuanEdwin.git
+$ cd MeiTuanEdwin
+$ git checkout -b local
 ```
 
 2. **Install dependencies** (npm v3+)
@@ -139,24 +141,20 @@ $ react-native run-ios
 $ react-native start
 ```
 
-## 瞎扯蛋
+## 说点啥
 
-我之前一直在写Objective-C，但不久前看了ES6的语法和Flex布局方式后，我便马上爱上了这种开发方式。
-
-这个Demo花了大概5天时间，是我的第一个ReactNative项目。
+我之前一直在写Android，2018年开始接触React Native编程，一直在学习和写demo。今年618期间开始正式使用ES6的语法和Flex布局方式写小程序，整体感觉这种语法相较于原生简介了不少。618之后正式接手京东店铺Android端开发，京东店铺是基于Android/ios和RN的混合编程开发，本人主要负责React Native和Android的联调及Android原生页的开发任务。
+该项目借助MeiTuan项目，融入本人在开发过程中的经验和教训，如果能给RN开发的朋友提供一些帮助和指引，那便是我最开心的事了~
 
 如果对这个Demo有任何的意见或建议，或者喜欢ReactNative的朋友，欢迎在下方留言。我会在第一时间回复 :)
 
-另外，不要问我为什么英文说明那么点，中文说明这么多。怪英语老师咯
 
 ## 最后
 
-如果你喜欢这个Demo，请给我一个star   :)
+如果你喜欢我的方案，请给我一个star   :)
+
+Github: https://github.com/hongyi0609/MeiTuanEdwin
+
+否则，请给下面的demo一个star  :)
 
 Github：https://github.com/huanxsd/MeiTuan
-
-我将持续更新这个Demo
-
-如果对这个Demo有任何疑问，欢迎加入我们的大家庭
-
-![ReactNative开发者群二维码.png](http://upload-images.jianshu.io/upload_images/5685774-957c90b45c8f8912.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
