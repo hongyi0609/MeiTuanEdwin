@@ -1,0 +1,30 @@
+{
+  "name": "MeiTuan",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "ios": "react-native run-ios",
+    "android": "react-native run-android"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0",
+    "react": "^16.3.1",
+    "react-native": "^0.55.4",
+    "react-native-page-control": "^1.1.1",
+    "react-native-refresh-list-view": "^1.0.6",
+    "react-native-scrollable-tab-view": "^0.8.0",
+    "react-navigation": "^1.0.0-beta.19"
+  },
+  "devDependencies": {
+    "babel-jest": "19.0.0",
+    "babel-preset-react-native": "4.0.0",
+    "flow-bin": "^0.45.0",
+    "jest": "22.4.3",
+    "react-test-renderer": "16.3.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
