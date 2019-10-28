@@ -1,14 +1,12 @@
 /**
- * Copyright (c) 2017-present, Liu Jinyong
- * All rights reserved.
- *
- * https://github.com/huanxsd/MeiTuan  
- * @flow
+ * @author Edwin
+ * https://github.com/hongyi0609/MeiTuanEdwin
  */
 
 
 import React, {PureComponent} from 'react'
 import {StatusBar} from 'react-native'
+import ToastUtils from './utils/ToastUtils'
 import {StackNavigator, TabNavigator, TabBarBottom} from 'react-navigation'
 
 import color from './widget/color'
@@ -23,6 +21,7 @@ import MineScene from './scene/Mine/MineScene'
 import WebScene from './widget/WebScene'
 import GroupPurchaseScene from './scene/GroupPurchase/GroupPurchaseScene'
 
+const tabBarLabelMap = new Map([[0,'团购'], [1,'附近'],[2,'订单'],[3,'我的']])
 const lightContentScenes = ['Home', 'Mine']
 
 function getCurrentRouteName(navigationState: any) {
@@ -57,6 +56,7 @@ class RootScene extends PureComponent<{}> {
           const currentScene = getCurrentRouteName(currentState);
           const previousScene = getCurrentRouteName(prevState);
           if (previousScene !== currentScene) {
+            ToastUtils.show(`您当前处于${tabBarLabelMap.get(currentState.routes[0].index)}`,ToastUtils.SHORT)
             if (lightContentScenes.indexOf(currentScene) >= 0) {
               StatusBar.setBarStyle("light-content");
             } else {

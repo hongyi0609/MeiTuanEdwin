@@ -1,13 +1,12 @@
 /**
- * Copyright (c) 2017-present, Liu Jinyong
- * All rights reserved.
- *
- * https://github.com/huanxsd/MeiTuan 
- * @flow
+ * @author Edwin
+ * 
  */
 
 
 import React, {PureComponent} from 'react'
+import ToastUtils from '../../utils/ToastUtils'
+
 import {View, Text, StyleSheet, StatusBar, Image, TouchableOpacity, ScrollView, RefreshControl} from 'react-native'
 
 import {Heading2, Heading3, Paragraph} from '../../widget/Text'
@@ -104,6 +103,7 @@ class MineScene extends PureComponent<Props, State> {
     }
 
     render() {
+        ToastUtils.show("洗刷刷~", ToastUtils.SHORT);
         return (
             <View style={{flex: 1, backgroundColor: color.paper}}>
                 <View style={{position: 'absolute', width: screen.width, height: screen.height / 2, backgroundColor: color.primary}} />
