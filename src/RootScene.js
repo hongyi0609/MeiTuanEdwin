@@ -7,6 +7,8 @@
 import React, {PureComponent} from 'react'
 import {StatusBar} from 'react-native'
 import ToastUtils from './utils/ToastUtils'
+import ReactNativeMessageEventSender from "./utils/ReactNativeMessageEventSender";
+// const ReactNativeMessageEventSender = require("./utils/ReactNativeMessageEventSender");
 import {StackNavigator, TabNavigator, TabBarBottom} from 'react-navigation'
 
 import color from './widget/color'
@@ -57,6 +59,12 @@ class RootScene extends PureComponent<{}> {
           const previousScene = getCurrentRouteName(prevState);
           if (previousScene !== currentScene) {
             ToastUtils.show(`您当前处于${tabBarLabelMap.get(currentState.routes[0].index)}`,ToastUtils.SHORT)
+            let data = {
+                currentState: currentState,
+                currentScene: currentScene
+            }
+            ReactNativeMessageEventSender.send("event_type_scene",data);
+
             if (lightContentScenes.indexOf(currentScene) >= 0) {
               StatusBar.setBarStyle("light-content");
             } else {

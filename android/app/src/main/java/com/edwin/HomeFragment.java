@@ -1,6 +1,7 @@
 package com.edwin;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.common.BaseEvent;
 import com.common.Constants;
 import com.common.HomeReactInstanceManager;
 import com.facebook.react.ReactRootView;
@@ -56,6 +58,7 @@ public class HomeFragment extends Fragment {
         EventBus.getDefault().register(this);
     }
 
+    @SuppressLint("InflateParams")
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -98,8 +101,8 @@ public class HomeFragment extends Fragment {
     };
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onReceiveRefreshEvent(HomeEvent homeEvent) {
-        switch (homeEvent.getEventType()) {
+    public void onReceiveRefreshEvent(BaseEvent baseEvent) {
+        switch (baseEvent.getEventType()) {
             case Constants.HOME_FRAGMENT_SENDER_REFRESH:
                 Toast.makeText(getActivity(), "刷新就刷新", Toast.LENGTH_LONG).show();
                 break;

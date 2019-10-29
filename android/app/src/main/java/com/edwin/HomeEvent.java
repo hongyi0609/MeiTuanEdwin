@@ -12,11 +12,11 @@ public class HomeEvent extends BaseEvent {
 
     }
 
-    public HomeEvent(int eventType) {
+    public HomeEvent(String eventType) {
         this(eventType, null);
     }
 
-    public HomeEvent(int eventType, Object event) {
+    public HomeEvent(String eventType, Object event) {
         setEventType(eventType);
         setEvent(event);
     }
