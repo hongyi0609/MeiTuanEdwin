@@ -1,7 +1,5 @@
 package com.common.reactComponents;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 
 import com.common.BaseEvent;
@@ -23,13 +21,6 @@ public class HomeNativeMessageEventListener implements HomeReactNativeMessageEve
         baseEvent.setEventType(eventType);
         baseEvent.setMap(readableMap);
         Log.d("MessageEventListener", "Current Thread is " + Thread.currentThread().getName());
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                Log.d("MessageEventListener", "Current Thread is " + Thread.currentThread().getName());
-                EventBus.getDefault().post(baseEvent);
-            }
-        });
+        EventBus.getDefault().post(baseEvent);
     }
 }
