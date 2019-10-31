@@ -29,8 +29,8 @@ allprojects {
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
-            println "打印的日志 + $rootDir"
-            println("打印的日志" + url)
+            println "打印的日志: rootDir = $rootDir"
+            println("打印的日志: url = $url")
         }
         google()
     }

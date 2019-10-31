@@ -13,6 +13,8 @@ import {Heading2, Heading3, Paragraph} from '../../widget/Text'
 import {screen, system} from '../../common'
 import {color, DetailCell, NavigationItem, SpacingView} from '../../widget'
 
+import ReactTextView from '../../utils/ReactTextView'
+
 type Props = {
 
 }
@@ -107,6 +109,7 @@ class MineScene extends PureComponent<Props, State> {
         return (
             <View style={{flex: 1, backgroundColor: color.paper}}>
                 <View style={{position: 'absolute', width: screen.width, height: screen.height / 2, backgroundColor: color.primary}} />
+                <ReactTextView style={ styles.avatar} title='我的我的我的哦~' />
                 <ScrollView
                     refreshControl={
                         <RefreshControl
