@@ -8,6 +8,7 @@
 .vscode/
 .watchmanconfig
 .DS_Store
+yarn.lock
 
 # Xcode
 #
