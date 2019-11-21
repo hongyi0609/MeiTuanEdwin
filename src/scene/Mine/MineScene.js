@@ -109,7 +109,10 @@ class MineScene extends PureComponent<Props, State> {
         return (
             <View style={{flex: 1, backgroundColor: color.paper}}>
                 <View style={{position: 'absolute', width: screen.width, height: screen.height / 2, backgroundColor: color.primary}} />
-                <ReactTextView style={ styles.avatar} title='我的我的我的哦~' />
+                <ReactTextView 
+                    style={{position:'relative',width:screen.width, height:32}} 
+                    title='我的我的我的哦~'
+                    onStateChanged={(state) => this._onStateChanged(state)} />
                 <ScrollView
                     refreshControl={
                         <RefreshControl
@@ -124,6 +127,11 @@ class MineScene extends PureComponent<Props, State> {
                 </ScrollView>
             </View>
         )
+    }
+
+    _onStateChanged(state) {
+
+        ToastUtils.show("state changed! state = " + state, ToastUtils.SHORT)
     }
 
     getDataList() {

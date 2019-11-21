@@ -18,14 +18,27 @@ var ViewPropTypes = require('ViewPropTypes');
 class ReactTextView extends React.Component {
     constructor(props){
         super(props)
+        this._onStateChanged = this._onStateChanged.bind(this)
+    }
+
+    _onStateChanged(event: Event) {
+        if (!this.props.onStateChanged) {
+            return;
+        }
+        this.props.onStateChanged(event.nativeEvent.state);
     }
 
     render() {
-        return <RCTReactTextView {...this.props} />;
+        return (
+            <RCTReactTextView 
+                {...this.props}
+                onStateChanged={this._onStateChanged} />
+            );
     }
 }
 ReactTextView.propTypes = {
     title: PropTypes.string,
+    onStateChanged: PropTypes.func,
     ...ViewPropTypes,
 }
 
