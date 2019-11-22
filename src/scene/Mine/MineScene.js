@@ -112,7 +112,10 @@ class MineScene extends PureComponent<Props, State> {
                 <ReactTextView 
                     style={{position:'relative',width:screen.width, height:32}} 
                     title='我的我的我的哦~'
-                    onStateChanged={(state) => this._onStateChanged(state)} />
+                    onStateChanged={(state) => this._onStateChanged(state)}
+                    onClicked={(msg) =>{
+                        alert("原生传递的数据为：" + msg)
+                    }} />
                 <ScrollView
                     refreshControl={
                         <RefreshControl

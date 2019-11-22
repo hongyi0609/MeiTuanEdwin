@@ -10,9 +10,8 @@ import android.view.View;
 
 public class ReactTextView extends android.support.v7.widget.AppCompatTextView implements View.OnClickListener {
 
-    private boolean clicked = false;
 
-    private StateChangedListener stateChangedListener;
+    private CommonListener commonListener;
 
     public ReactTextView(Context context) {
         super(context);
@@ -28,28 +27,26 @@ public class ReactTextView extends android.support.v7.widget.AppCompatTextView i
 
     public void setReactTitle(String title) {
         setText(title);
-        stateChangedListener.stateChanged(clicked ? 0 : 1);
     }
 
     @Override
     public void onClick(View v) {
-        // 点击事件时无效的，必须传递给RN才能生效
-        clicked = !clicked;
-        stateChangedListener.stateChanged(clicked ? 0 : 1);
+        // 点击事件在这里是无效的，无法传递给RN
     }
 
-    public void setStateChangedListener(StateChangedListener stateChangedListener) {
-        if (this.stateChangedListener == null) {
-            this.stateChangedListener = stateChangedListener;
+    public void setCommonListener(CommonListener commonListener) {
+        if (this.commonListener == null) {
+            this.commonListener = commonListener;
         }
     }
 
-    public interface StateChangedListener{
+    public interface CommonListener {
 
         /**
          * 状态变化：被选中、取消选中
          * @param newState
          */
         void stateChanged(int newState);
+
     }
 }
