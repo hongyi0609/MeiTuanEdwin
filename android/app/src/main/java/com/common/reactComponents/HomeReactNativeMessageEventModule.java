@@ -7,6 +7,7 @@ import com.facebook.react.bridge.ReadableMap;
 
 /**
  * Created by Edwin,CHEN on 2019/10/29.
+ * RN通过Module方法向原生Native发送通知
  */
 
 public class HomeReactNativeMessageEventModule extends ReactContextBaseJavaModule {

@@ -5,6 +5,7 @@
 
 
 import React, {PureComponent} from 'react'
+import { UIManager, findNodeHandle } from "react-native";
 import ToastUtils from '../../utils/ToastUtils'
 
 import {View, Text, StyleSheet, StatusBar, Image, TouchableOpacity, ScrollView, RefreshControl} from 'react-native'
@@ -110,11 +111,17 @@ class MineScene extends PureComponent<Props, State> {
             <View style={{flex: 1, backgroundColor: color.paper}}>
                 <View style={{position: 'absolute', width: screen.width, height: screen.height / 2, backgroundColor: color.primary}} />
                 <ReactTextView 
+                    ref='RCTReactTextView'
                     style={{position:'relative',width:screen.width, height:32}} 
                     title='我的我的我的哦~'
                     onStateChanged={(state) => this._onStateChanged(state)}
                     onClicked={(msg) =>{
                         alert("原生传递的数据为：" + msg)
+                        UIManager.dispatchViewManagerCommand(
+                            findNodeHandle(this.refs.RCTReactTextView),
+                            UIManager.ReactTextView.Commands.handleTask, // Commands后面的值与原生层定义的NATIVE_METHOD_HANDLE_TASK一致
+                            ["handleTask"] // 向原生层传递的参数数据,数据形如：["第一个参数","第二个参数",3]
+                        )
                     }} />
                 <ScrollView
                     refreshControl={
