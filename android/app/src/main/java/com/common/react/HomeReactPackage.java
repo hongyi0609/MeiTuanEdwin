@@ -1,14 +1,12 @@
-package com.common.reactComponents;
+package com.common.react;
 
-import com.common.reactComponents.viewManager.ReactTextViewManager;
+import com.common.react.viewManager.ReactTextViewManager;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**

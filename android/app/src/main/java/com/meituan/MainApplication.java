@@ -2,7 +2,7 @@ package com.meituan;
 
 import android.app.Application;
 
-import com.common.reactComponents.HomeReactPackage;
+import com.common.react.HomeReactPackage;
 import com.facebook.infer.annotation.Assertions;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
@@ -17,7 +17,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Nullable;

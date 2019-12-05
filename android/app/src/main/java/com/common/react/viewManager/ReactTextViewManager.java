@@ -1,11 +1,11 @@
-package com.common.reactComponents.viewManager;
+package com.common.react.viewManager;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
 
-import com.common.reactComponents.components.ReactTextView;
-import com.common.reactComponents.events.TextViewStateChangedEvent;
+import com.common.react.components.ReactTextView;
+import com.common.react.events.TextViewStateChangedEvent;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.WritableMap;

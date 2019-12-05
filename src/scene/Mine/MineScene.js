@@ -107,6 +107,12 @@ class MineScene extends PureComponent<Props, State> {
 
     render() {
         ToastUtils.show("洗刷刷~", ToastUtils.SHORT);
+        ToastUtils.showWithCallback(
+            "showWithCallback", 
+            ToastUtils.SHORT, 
+            (toastModuleName, toastModulePackageName)=>{
+                alert(`${toastModuleName}` + " in " + `${toastModulePackageName}`)
+            })
         return (
             <View style={{flex: 1, backgroundColor: color.paper}}>
                 <View style={{position: 'absolute', width: screen.width, height: screen.height / 2, backgroundColor: color.primary}} />

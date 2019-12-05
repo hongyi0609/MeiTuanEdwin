@@ -1,4 +1,4 @@
-package com.common.reactComponents;
+package com.common.react;
 
 import android.util.Log;
 

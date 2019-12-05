@@ -2,7 +2,7 @@ package com.common;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.common.reactComponents.HomeReactPackage;
+import com.common.react.HomeReactPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.common.LifecycleState;

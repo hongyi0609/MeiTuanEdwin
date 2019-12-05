@@ -1,7 +1,8 @@
-package com.common.reactComponents;
+package com.common.react;
 
 import android.widget.Toast;
 
+import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -53,5 +54,13 @@ public class ToastModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void show(String message, int duration) {
         Toast.makeText(getReactApplicationContext(), message, duration).show();
+    }
+
+    @ReactMethod
+    public void showWithCallback(String message, int duration, Callback callback) {
+        Toast.makeText(getReactApplicationContext(), message, duration).show();
+        String toastModuleName = ToastModule.class.getSimpleName();
+        String toastModulePackageName = ToastModule.class.getPackage().getName();
+        callback.invoke(toastModuleName,toastModulePackageName);
     }
 }

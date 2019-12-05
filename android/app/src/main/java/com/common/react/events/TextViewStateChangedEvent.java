@@ -1,4 +1,4 @@
-package com.common.reactComponents.events;
+package com.common.react.events;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;

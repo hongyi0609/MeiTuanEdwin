@@ -28,5 +28,4 @@
     "preset": "react-native"
   },
   "main": "Libraries/react-native/react-native.js"
-
 }

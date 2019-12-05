@@ -1,4 +1,4 @@
-package com.common.reactComponents.components;
+package com.common.react.components;
 
 import android.content.Context;
 import android.util.AttributeSet;
