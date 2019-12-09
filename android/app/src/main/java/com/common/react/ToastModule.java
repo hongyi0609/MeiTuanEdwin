@@ -56,8 +56,30 @@ public class ToastModule extends ReactContextBaseJavaModule {
         Toast.makeText(getReactApplicationContext(), message, duration).show();
     }
 
+
+    /**
+     * 这个是js真正调用的方法，注意需要添加@ReactMethod的注解
+     * <p>
+     *     callBack是一种特殊的回调参数，将在原生中的函数结果回传给js.
+     *     A native module is supposed to invoke its callback only once. It can, however, store the callback and invoke it later.
+
+     It is very important to highlight that the callback is not invoked immediately after the native function completes - remember that bridge communication is asynchronous, and this too is tied to the run loop.
+     * </p>
+     * @param message
+     * @param duration
+     * @param callback
+     */
     @ReactMethod
-    public void showWithCallback(String message, int duration, Callback callback) {
+    public void showWithCallback(String message, int duration, Callback callback/*, Callback callback2*/) {
+        Toast.makeText(getReactApplicationContext(), message, duration).show();
+        String toastModuleName = ToastModule.class.getSimpleName();
+        String toastModulePackageName = ToastModule.class.getPackage().getName();
+        callback.invoke(toastModuleName,toastModulePackageName);
+//        callback2.invoke(toastModuleName);
+    }
+
+    @ReactMethod
+    public void showWithCallback2(String message, int duration, Callback callback) {
         Toast.makeText(getReactApplicationContext(), message, duration).show();
         String toastModuleName = ToastModule.class.getSimpleName();
         String toastModulePackageName = ToastModule.class.getPackage().getName();

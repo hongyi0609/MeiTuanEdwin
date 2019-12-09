@@ -112,7 +112,19 @@ class MineScene extends PureComponent<Props, State> {
             ToastUtils.SHORT, 
             (toastModuleName, toastModulePackageName)=>{
                 alert(`${toastModuleName}` + " in " + `${toastModulePackageName}`)
-            })
+            }/*,
+            (toastModuleName)=>{
+                alert(`${toastModuleName}`)
+            }*/)
+        ToastUtils.showWithCallback2(
+            "showWithCallback",
+            ToastUtils.SHORT,
+            (toastModuleName, toastModulePackageName) => {
+                alert(`${toastModuleName}` + " in " + `${toastModulePackageName}`)
+            }/*,
+            (toastModuleName)=>{
+                alert(`${toastModuleName}`)
+            }*/)
         return (
             <View style={{flex: 1, backgroundColor: color.paper}}>
                 <View style={{position: 'absolute', width: screen.width, height: screen.height / 2, backgroundColor: color.primary}} />
