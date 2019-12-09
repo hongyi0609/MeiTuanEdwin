@@ -1,11 +1,15 @@
 package com.common.react;
 
+import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.WritableMap;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,7 +57,7 @@ public class ToastModule extends ReactContextBaseJavaModule {
       * */
     @ReactMethod
     public void show(String message, int duration) {
-        Toast.makeText(getReactApplicationContext(), message, duration).show();
+        Toast.makeText(getReactApplicationContext(), TextUtils.isEmpty(message) ? "消息异常" : message, duration).show();
     }
 
 
@@ -71,7 +75,7 @@ public class ToastModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void showWithCallback(String message, int duration, Callback callback/*, Callback callback2*/) {
-        Toast.makeText(getReactApplicationContext(), message, duration).show();
+        Toast.makeText(getReactApplicationContext(), TextUtils.isEmpty(message) ? "消息异常" : message, duration).show();
         String toastModuleName = ToastModule.class.getSimpleName();
         String toastModulePackageName = ToastModule.class.getPackage().getName();
         callback.invoke(toastModuleName,toastModulePackageName);
@@ -80,9 +84,22 @@ public class ToastModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void showWithCallback2(String message, int duration, Callback callback) {
-        Toast.makeText(getReactApplicationContext(), message, duration).show();
+        Toast.makeText(getReactApplicationContext(), TextUtils.isEmpty(message) ? "消息异常" : message, duration).show();
         String toastModuleName = ToastModule.class.getSimpleName();
         String toastModulePackageName = ToastModule.class.getPackage().getName();
         callback.invoke(toastModuleName,toastModulePackageName);
+    }
+
+    @ReactMethod
+    public void showWithPromise(String message, int duration, Promise promise) {
+        Toast.makeText(getReactApplicationContext(), TextUtils.isEmpty(message) ? "消息异常" : message, duration).show();
+
+        WritableMap map = Arguments.createMap();
+        if (TextUtils.isEmpty(message)) {
+            promise.reject(new Exception("No message!"));
+        } else {
+            map.putString("message", message);
+            promise.resolve(map);
+        }
     }
 }

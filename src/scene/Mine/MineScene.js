@@ -116,15 +116,17 @@ class MineScene extends PureComponent<Props, State> {
             (toastModuleName)=>{
                 alert(`${toastModuleName}`)
             }*/)
-        ToastUtils.showWithCallback2(
-            "showWithCallback",
-            ToastUtils.SHORT,
-            (toastModuleName, toastModulePackageName) => {
-                alert(`${toastModuleName}` + " in " + `${toastModulePackageName}`)
-            }/*,
-            (toastModuleName)=>{
-                alert(`${toastModuleName}`)
-            }*/)
+
+        // ToastUtils.showWithCallback2(
+        //     "showWithCallback",
+        //     ToastUtils.SHORT,
+        //     (toastModuleName, toastModulePackageName) => {
+        //         alert(`${toastModuleName}` + " in " + `${toastModulePackageName}`)
+        //     })
+
+        // this.showWithPromise()
+        this.showWithPromise("show with promise is wonderful!")
+
         return (
             <View style={{flex: 1, backgroundColor: color.paper}}>
                 <View style={{position: 'absolute', width: screen.width, height: screen.height / 2, backgroundColor: color.primary}} />
@@ -155,6 +157,23 @@ class MineScene extends PureComponent<Props, State> {
                 </ScrollView>
             </View>
         )
+    }
+
+    /**
+     * 与Android原生方法showWithPromise相呼应，实现JavaScript调用原生方法，原生方法将异步处理结果
+     * 返回给JavaScript的功能
+     * @param {String} msg 
+     */
+    async showWithPromise(msg) {
+        try {
+            let { message } = await ToastUtils.showWithPromise(
+                msg,
+                ToastUtils.SHORT
+            )
+            alert(message)
+        } catch (e) {
+            alert(e)
+        }
     }
 
     _onStateChanged(state) {
