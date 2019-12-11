@@ -5,7 +5,7 @@
 
 
 import React, {PureComponent} from 'react'
-import { UIManager, findNodeHandle } from "react-native";
+import { UIManager, findNodeHandle, NativeEventEmitter, NativeModules } from "react-native";
 import ToastUtils from '../../utils/ToastUtils'
 
 import {View, Text, StyleSheet, StatusBar, Image, TouchableOpacity, ScrollView, RefreshControl} from 'react-native'
@@ -60,6 +60,14 @@ class MineScene extends PureComponent<Props, State> {
         this.state = {
             isRefreshing: false
         }
+    }
+
+    componentDidMount() {
+        const eventEmitter = new NativeEventEmitter(NativeModules.ToastExample)
+        eventEmitter.addListener('EventReminder', (event) => {
+            // console.log(event.eventProperty) // "someValue"
+            alert(event.eventProperty)
+        })
     }
 
     onHeaderRefresh() {

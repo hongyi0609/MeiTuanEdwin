@@ -26,6 +26,8 @@ public class HomeReactPackage implements ReactPackage {
         List<NativeModule> modules = new ArrayList<>();
         modules.add(new ToastModule(reactContext));
         modules.add(new HomeReactNativeMessageEventModule(reactContext, new HomeNativeMessageEventListener()));
+        // HomeMessageEventModule用于原生端向服务端发送实时消息
+        modules.add(new HomeMessageEventModule(reactContext));
         return modules;
     }
 

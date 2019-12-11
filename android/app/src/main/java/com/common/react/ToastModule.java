@@ -14,8 +14,6 @@ import com.facebook.react.bridge.WritableMap;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Nullable;
-
 /**
  * Created by Edwin,CHEN on 2019/10/28.
  */
@@ -43,7 +41,7 @@ public class ToastModule extends ReactContextBaseJavaModule {
      * 让js来取变化的数据
      * @return
      */
-    @Nullable
+
     @Override
     public Map<String, Object> getConstants() {
         final Map<String, Object> constants = new HashMap<>();
