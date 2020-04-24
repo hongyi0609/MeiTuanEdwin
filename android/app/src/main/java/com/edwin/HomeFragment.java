@@ -5,7 +5,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import org.jetbrains.annotations.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +20,12 @@ import com.common.react.HomeMessageEventModule;
 import com.facebook.react.ReactRootView;
 import com.meituan.MainActivity;
 import com.meituan.R;
+import com.utils.AnimalUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by Edwin,CHEN on 2019/10/14.
@@ -63,6 +64,9 @@ public class HomeFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		root = inflater.inflate(R.layout.home_fragment, null);
+		root.findViewById(R.id.scrollIndicatorUpLayout).setOnClickListener(
+				v -> AnimalUtil.startZoomAnim(v,150)
+		);
 		root.findViewById(R.id.open_meituan_text_view).setOnClickListener(l);
 		root.findViewById(R.id.event_bus_sender_text_view).setOnClickListener(l);
 		eventBusFlagText = root.findViewById(R.id.event_bus_flag_text_view);
@@ -85,24 +89,21 @@ public class HomeFragment extends Fragment {
 		}
 	}
 
-	private View.OnClickListener l = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			switch (v.getId()) {
-				case R.id.open_meituan_text_view:
-					startActivity(new Intent(getActivity(), MainActivity.class));
-					break;
-				case R.id.event_bus_sender_text_view:
-					EventBus.getDefault().post(new HomeEvent());
-					EventBus.getDefault().post(new HomeEvent(Constants.HOME_FRAGMENT_SENDER_REFRESH));
-					EventBus.getDefault().post(new HomeEvent(Constants.HOME_FRAGMENT_SENDER_COMPLEX, new HomeEvent()));
-					break;
-				case R.id.send_to_js_text_view:
+	private View.OnClickListener l = (v) -> {
+		switch (v.getId()) {
+			case R.id.open_meituan_text_view:
+				startActivity(new Intent(getActivity(), MainActivity.class));
+				break;
+			case R.id.event_bus_sender_text_view:
+				EventBus.getDefault().post(new HomeEvent());
+				EventBus.getDefault().post(new HomeEvent(Constants.HOME_FRAGMENT_SENDER_REFRESH));
+				EventBus.getDefault().post(new HomeEvent(Constants.HOME_FRAGMENT_SENDER_COMPLEX, new HomeEvent()));
+				break;
+			case R.id.send_to_js_text_view:
 //					WritableMap params = Arguments.createMap();
 //					params.putString("eventProperty", "someValue");
 //					String eventName = "EventReminder";
-					HomeMessageEventModule.newInstance().putEventName("EventReminder").putParam("eventProperty", "someValue").sendEventToJs();
-			}
+				HomeMessageEventModule.newInstance().putEventName("EventReminder").putParam("eventProperty", "someValue").sendEventToJs();
 		}
 	};
 

@@ -1,7 +1,6 @@
 package com.edwin;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -59,10 +58,10 @@ public class HomeActivity extends AppCompatActivity implements DefaultHardwareBa
         mReactInstanceManager = homeReactInstanceManager.init(this);
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
-
         if (mReactInstanceManager != null) {
             mReactInstanceManager.onHostResume(this, this);
         }
