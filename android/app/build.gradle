@@ -144,6 +144,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'com.facebook.react:react-native:0.55.4'
@@ -152,7 +153,7 @@ dependencies {
     implementation files('src/main/libs/eventbus-3.1.1.jar')
 //    compile 'org.jetbrains:annotations-java5:15.0' // 与flutter依赖冲突
     implementation project(':flutter')
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 repositories {
     mavenCentral()

@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/home_tab_layout"
+            app:tabTextAppearance="@style/TabLayoutTextStyle"
+            app:tabIndicatorColor="#999000"
+            app:tabTextColor="#020999"
+            app:tabSelectedTextColor="#f92999"
+            app:tabMode="scrollable"
+            app:tabMinWidth="50dp"
+            app:tabMaxWidth="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/home_view_pager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

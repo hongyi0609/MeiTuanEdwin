@@ -14,6 +14,9 @@ open class HomeViewPagerFragmentAdapter : FragmentPagerAdapter {
 
     private val list = ArrayList<Fragment>()
 
+    private val titles = ArrayList<String>()
+
+
     constructor(fm:FragmentManager) :super(fm){
         if (list.size <= 0){
             list.add(ReactNativeFragment.createHomeFragment())
@@ -22,7 +25,17 @@ open class HomeViewPagerFragmentAdapter : FragmentPagerAdapter {
 
             list.add(Flutter.createFragment(Constants.FLUTTER_INITIAL_ROUTE))
         }
+//        if (titles.size <= 0) {
+//            titles.add("美团0")
+//            titles.add("美团1")
+//            titles.add("美团2")
+//            titles.add("Flutter Demo")
+//        }
     }
+
+//    override fun getPageTitle(position: Int): CharSequence? {
+//        return titles[position]
+//    }
 
     override fun getItem(index: Int): Fragment {
         return list[index]

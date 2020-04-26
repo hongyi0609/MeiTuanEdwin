@@ -1,7 +1,7 @@
 rootProject.name = 'MeiTuan'
 
 include ':app'
-setBinding(new Binding([gradle: this]))
+setBinding(new Binding([gradle: this,mainModuleName:'app']))
 evaluate(
         new File(
                 settingsDir.parentFile,
