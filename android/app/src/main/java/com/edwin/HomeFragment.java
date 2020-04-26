@@ -18,6 +18,7 @@ import com.common.Constants;
 import com.common.HomeReactInstanceManager;
 import com.common.react.HomeMessageEventModule;
 import com.facebook.react.ReactRootView;
+import com.flutter.FlutterInterfaceActivity;
 import com.meituan.MainActivity;
 import com.meituan.R;
 import com.utils.AnimalUtil;
@@ -67,6 +68,8 @@ public class HomeFragment extends Fragment {
 		root.findViewById(R.id.scrollIndicatorUpLayout).setOnClickListener(
 				v -> AnimalUtil.startZoomAnim(v,150)
 		);
+		mContext.startActivity(new Intent(mContext, FlutterInterfaceActivity.class));
+
 		root.findViewById(R.id.open_meituan_text_view).setOnClickListener(l);
 		root.findViewById(R.id.event_bus_sender_text_view).setOnClickListener(l);
 		eventBusFlagText = root.findViewById(R.id.event_bus_flag_text_view);

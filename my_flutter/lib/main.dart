@@ -1,6 +1,30 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+//void main() => runApp(MyApp());
+void main() => runApp(_widgetForRoute(window.defaultRouteName));
+
+Widget _widgetForRoute(String route){
+  switch(route){
+    case 'route1':
+      return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text("Flutter首页"),
+          ),
+          body: Center(
+            child: Text("俺老孙来也！FLutter，你个龟儿子~，route=$route"),
+          ),
+        ),
+      );
+    default:
+      return Center(
+        child: Text('Unknown route: $route', textDirection: TextDirection.ltr,),
+      );
+  }
+}
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -91,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              'Jack！You have pushed the button this many times:',
             ),
             Text(
               '$_counter',
