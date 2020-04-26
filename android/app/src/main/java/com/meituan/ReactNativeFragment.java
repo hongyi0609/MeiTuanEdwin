@@ -1,4 +1,4 @@
-package com.edwin;
+package com.meituan;
 
 
 import android.annotation.SuppressLint;
@@ -19,8 +19,6 @@ import com.common.HomeReactInstanceManager;
 import com.common.react.HomeMessageEventModule;
 import com.facebook.react.ReactRootView;
 import com.flutter.FlutterInterfaceActivity;
-import com.meituan.MainActivity;
-import com.meituan.R;
 import com.utils.AnimalUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -32,10 +30,10 @@ import org.jetbrains.annotations.Nullable;
  * Created by Edwin,CHEN on 2019/10/14.
  */
 
-public class HomeFragment extends Fragment {
+public class ReactNativeFragment extends Fragment {
 
-	public static HomeFragment createHomeFragment() {
-		return new HomeFragment();
+	public static ReactNativeFragment createHomeFragment() {
+		return new ReactNativeFragment();
 	}
 
 	private View root;
@@ -64,11 +62,8 @@ public class HomeFragment extends Fragment {
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		root = inflater.inflate(R.layout.home_fragment, null);
-		root.findViewById(R.id.scrollIndicatorUpLayout).setOnClickListener(
-				v -> AnimalUtil.startZoomAnim(v,150)
-		);
-		mContext.startActivity(new Intent(mContext, FlutterInterfaceActivity.class));
+		root = inflater.inflate(R.layout.react_native_fragment, null);
+//		mContext.startActivity(new Intent(mContext, FlutterInterfaceActivity.class));
 
 		root.findViewById(R.id.open_meituan_text_view).setOnClickListener(l);
 		root.findViewById(R.id.event_bus_sender_text_view).setOnClickListener(l);
@@ -98,9 +93,9 @@ public class HomeFragment extends Fragment {
 				startActivity(new Intent(getActivity(), MainActivity.class));
 				break;
 			case R.id.event_bus_sender_text_view:
-				EventBus.getDefault().post(new HomeEvent());
-				EventBus.getDefault().post(new HomeEvent(Constants.HOME_FRAGMENT_SENDER_REFRESH));
-				EventBus.getDefault().post(new HomeEvent(Constants.HOME_FRAGMENT_SENDER_COMPLEX, new HomeEvent()));
+				EventBus.getDefault().post(new ReactNativeEvent());
+				EventBus.getDefault().post(new ReactNativeEvent(Constants.HOME_FRAGMENT_SENDER_REFRESH));
+				EventBus.getDefault().post(new ReactNativeEvent(Constants.HOME_FRAGMENT_SENDER_COMPLEX, new ReactNativeEvent()));
 				break;
 			case R.id.send_to_js_text_view:
 //					WritableMap params = Arguments.createMap();

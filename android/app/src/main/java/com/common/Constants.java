@@ -10,4 +10,8 @@ public class Constants {
     public static final String HOME_FRAGMENT_SENDER_REFRESH = "event_sender_refresh";
     public static final String HOME_FRAGMENT_SENDER_COMPLEX = "event_sender_complex";
 
+
+    // Flutter
+    public static final String FLUTTER_INITIAL_ROUTE = "route1";
+
 }

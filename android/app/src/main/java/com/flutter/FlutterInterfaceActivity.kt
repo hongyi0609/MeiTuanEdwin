@@ -3,6 +3,7 @@ package com.flutter
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.FrameLayout
+import com.common.Constants
 import com.meituan.R
 import io.flutter.facade.Flutter
 
@@ -19,7 +20,7 @@ class FlutterInterfaceActivity : AppCompatActivity() {
 
         // 通过FlutterFragment引入Flutter
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.flutter_container, Flutter.createFragment("route1")).commit()
+        fragmentTransaction.replace(R.id.flutter_container, Flutter.createFragment(Constants.FLUTTER_INITIAL_ROUTE)).commit()
 
         // 1.2版本不再支持FlutterView的方式
 //        val flutterView = Flutter.createView(this, lifecycle, "route1")

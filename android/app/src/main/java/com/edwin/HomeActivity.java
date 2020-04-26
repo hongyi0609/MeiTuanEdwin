@@ -15,6 +15,7 @@ import com.common.HomeReactInstanceManager;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.meituan.R;
+import com.meituan.ReactNativeFragment;
 
 /**
  * Created by Edwin,CHEN on 2019/10/14.
@@ -31,24 +32,11 @@ public class HomeActivity extends AppCompatActivity implements DefaultHardwareBa
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
-//
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
-//            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-//                    Uri.parse("package:" + getPackageName()));
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            startActivityForResult(intent, OVERLAY_PERMISSION_REQ_CODE);
-//        } else {
-//            initReactInstanceManager();
-//            if (savedInstanceState == null) {
-//                FragmentManager fragmentManager = getSupportFragmentManager();
-//                fragmentManager.beginTransaction().replace(R.id.home_container, HomeFragment.createHomeFragment()).commit();
-//            }
-//        }
 
         initReactInstanceManager();
         if (savedInstanceState == null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.home_container, HomeFragment.createHomeFragment()).commit();
+            fragmentManager.beginTransaction().replace(R.id.home_container, HomeFragment.Companion.createHomeFragment()).commit();
         }
 
     }
