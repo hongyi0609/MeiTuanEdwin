@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.common.adapter.HomeViewPagerFragmentAdapter
 import com.meituan.R
 
@@ -54,7 +53,7 @@ class HomeFragment : Fragment() {
         homeTabLayout!!.setupWithViewPager(homeViewPager)
 
         val titles = arrayOf("美团First","美团Second","美团Third","Flutter")
-        for ( i in 1 .. 4 ) {
+        for ( i in 1 .. titles.size ) {
             homeTabLayout!!.getTabAt(i-1)!!.text = titles[i-1]
             if (i == 3){
                 homeTabLayout!!.getTabAt(i-1)!!.select()

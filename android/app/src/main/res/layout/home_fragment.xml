@@ -16,8 +16,8 @@
             app:tabTextColor="#020999"
             app:tabSelectedTextColor="#f92999"
             app:tabMode="scrollable"
-            app:tabMinWidth="50dp"
-            app:tabMaxWidth="100dp"
+
+            app:tabGravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </android.support.design.widget.AppBarLayout>
