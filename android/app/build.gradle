@@ -116,8 +116,13 @@ android {
             include "armeabi-v7a", "x86"
         }
     }
+
     buildTypes {
+        debug {
+            println("buildType is DEBUG")
+        }
         release {
+            println("buildType is RELEASE")
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
