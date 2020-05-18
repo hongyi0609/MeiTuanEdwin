@@ -32,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class ReactNativeFragment extends Fragment {
 
-	public static ReactNativeFragment createHomeFragment() {
+	public static ReactNativeFragment createFragment() {
 		return new ReactNativeFragment();
 	}
 

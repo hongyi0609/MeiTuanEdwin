@@ -15,7 +15,6 @@ import com.common.HomeReactInstanceManager;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.meituan.R;
-import com.meituan.ReactNativeFragment;
 
 /**
  * Created by Edwin,CHEN on 2019/10/14.
@@ -38,7 +37,6 @@ public class HomeActivity extends AppCompatActivity implements DefaultHardwareBa
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.home_container, HomeFragment.Companion.createHomeFragment()).commit();
         }
-
     }
 
     private void initReactInstanceManager() {

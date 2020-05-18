@@ -29,10 +29,6 @@ class HomeFragment : Fragment() {
         mContext = context
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.home_fragment, container, false)
         homeTabLayout = root.findViewById(R.id.home_tab_layout)
@@ -52,7 +48,7 @@ class HomeFragment : Fragment() {
     private fun initTabLayout(){
         homeTabLayout!!.setupWithViewPager(homeViewPager)
 
-        val titles = arrayOf("美团First","美团Second","美团Third","Flutter")
+        val titles = arrayOf("美团First","美团Second","RxJava","Flutter")
         for ( i in 1 .. titles.size ) {
             homeTabLayout!!.getTabAt(i-1)!!.text = titles[i-1]
             if (i == 3){

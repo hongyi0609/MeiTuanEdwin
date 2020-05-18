@@ -156,9 +156,12 @@ dependencies {
     // From node_modules
     //    implementation 'org.greenrobot:eventbus:3.1.1'
     implementation files('src/main/libs/eventbus-3.1.1.jar')
+    implementation 'io.reactivex:rxjava:1.2.0'
+    implementation 'io.reactivex:rxandroid:1.2.1'
 //    compile 'org.jetbrains:annotations-java5:15.0' // 与flutter依赖冲突
     implementation project(':flutter')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+//    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 }
 repositories {
     mavenCentral()
