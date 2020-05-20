@@ -5,7 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.base.BaseFragment;
 import com.common.BaseEvent;
 import com.common.Constants;
 import com.common.HomeReactInstanceManager;
 import com.common.react.HomeMessageEventModule;
 import com.facebook.react.ReactRootView;
-import com.flutter.FlutterInterfaceActivity;
-import com.utils.AnimalUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -30,7 +29,9 @@ import org.jetbrains.annotations.Nullable;
  * Created by Edwin,CHEN on 2019/10/14.
  */
 
-public class ReactNativeFragment extends Fragment {
+public class ReactNativeFragment extends BaseFragment {
+
+	private final String TAG = ReactNativeFragment.class.getSimpleName();
 
 	public static ReactNativeFragment createFragment() {
 		return new ReactNativeFragment();
@@ -122,13 +123,24 @@ public class ReactNativeFragment extends Fragment {
 	}
 
 	@Override
-	public void onDestroy() {
-		super.onDestroy();
+	public void onFirstFetchData() {
+		super.onFirstFetchData();
+		Log.d(TAG, "****onFirstFetchData()***");
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
 		EventBus.getDefault().unregister(this);
 
 		if (mReactRootView != null) {
 			mReactRootView.unmountReactApplication();
 		}
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
 	}
 
 }

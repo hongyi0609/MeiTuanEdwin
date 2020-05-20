@@ -2,7 +2,6 @@ package com.flutter
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.FrameLayout
 import com.common.Constants
 import com.meituan.R
 import io.flutter.facade.Flutter
@@ -16,7 +15,7 @@ class FlutterInterfaceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.flutter_container_layout_activity)
+        setContentView(R.layout.flutter_container_layout)
 
         // 通过FlutterFragment引入Flutter
         val fragmentTransaction = supportFragmentManager.beginTransaction()

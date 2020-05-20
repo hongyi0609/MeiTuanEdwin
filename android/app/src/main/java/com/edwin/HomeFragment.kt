@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.common.Constants
 import com.common.adapter.HomeViewPagerFragmentAdapter
 import com.meituan.R
 
@@ -59,11 +60,24 @@ class HomeFragment : Fragment() {
 
     private fun initViewPager(){
         homeViewPager!!.adapter = HomeViewPagerFragmentAdapter(childFragmentManager)
-        homeViewPager!!.offscreenPageLimit = Companion.PAGE_SCREEN_LIMIT
+        homeViewPager!!.offscreenPageLimit = Constants.PAGE_SCREEN_LIMIT
+        homeViewPager!!.addOnPageChangeListener(object :ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(p0: Int) {
+
+            }
+
+            override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {
+
+            }
+
+            override fun onPageSelected(p0: Int) {
+
+            }
+
+        })
     }
 
     companion object {
-        private val PAGE_SCREEN_LIMIT :Int = 3
         fun createHomeFragment() :Fragment{
             return HomeFragment()
         }

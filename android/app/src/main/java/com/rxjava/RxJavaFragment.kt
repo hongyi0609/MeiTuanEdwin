@@ -3,19 +3,21 @@ package com.rxjava
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.TextView
+import com.base.BaseFragment
 import com.meituan.R
 
 /**
  * Created by Edwin,CHEN on 2020/4/28.
  */
-class RxJavaFragment : Fragment() {
+class RxJavaFragment : BaseFragment() {
 
-    private var mContext: Context? = null
+//    private var mContext: Context? = null
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -69,7 +71,7 @@ class RxJavaFragment : Fragment() {
                 R.id.boolean_operator_text_view -> {
                     OperatorCallManager.booleanOperatorCall()
                 }
-            // 布尔操作符
+            // 条件操作符
                 R.id.conditional_operator_text_view -> {
                     OperatorCallManager.conditionalOperatorCall()
                 }
@@ -84,10 +86,15 @@ class RxJavaFragment : Fragment() {
         }
     }
 
+    override fun onFirstFetchData() {
+        super.onFirstFetchData()
+        Log.d(TAG,"****onFirstFetchData()***")
+    }
+
     companion object {
         val TAG: String = RxJavaFragment::class.java.simpleName
 
-        fun createFragment(): Fragment {
+        fun createFragment(): RxJavaFragment {
             return RxJavaFragment()
         }
     }
