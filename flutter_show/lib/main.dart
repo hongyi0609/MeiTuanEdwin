@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'demo/LayoutDemo.dart';
 import 'demo/MyAppListViewDemo.dart';
 
-void main() =>
-    runApp(
+void main() => runApp(
 //        MyApp()
-        MyListViewDemo()
+//        MyListViewDemo()
+    LayoutDemo()
 //        SimpleApp()
 //        FadeAppTest()
 //        MaterialApp(
@@ -107,10 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .display1,
+              style: Theme.of(context).textTheme.display1,
             ),
           ],
         ),
