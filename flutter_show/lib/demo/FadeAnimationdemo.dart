@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class FadeAppTest extends StatelessWidget {
+class FadeAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
