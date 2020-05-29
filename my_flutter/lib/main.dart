@@ -2,29 +2,26 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import 'demo/LayoutDemo1.dart';
+
 //void main() => runApp(MyApp());
 void main() => runApp(_widgetForRoute(window.defaultRouteName));
 
-Widget _widgetForRoute(String route){
-  switch(route){
+Widget _widgetForRoute(String route) {
+  switch (route) {
     case 'route1':
-      return MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text("Flutter首页"),
-          ),
-          body: Center(
-            child: Text("俺老孙来也！FLutter，你个龟儿子~，route=$route"),
-          ),
-        ),
-      );
+      return LayoutDemo1();
+    case 'route2':
+      return MaterialApp(home: MyHomePage());
     default:
       return Center(
-        child: Text('Unknown route: $route', textDirection: TextDirection.ltr,),
+        child: Text(
+          'Unknown route: $route',
+          textDirection: TextDirection.ltr,
+        ),
       );
   }
 }
-
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

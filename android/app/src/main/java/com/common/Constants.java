@@ -13,6 +13,7 @@ public class Constants {
 
     // Flutter
     public static final String FLUTTER_INITIAL_ROUTE = "route1";
+    public static final String FLUTTER_SECOND_ROUTE = "route2";
 
     // viewPager
     public static int PAGE_SCREEN_LIMIT = 3; //有效预加载，但是可能会卡顿
