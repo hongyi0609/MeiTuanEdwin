@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SimpleApp extends StatelessWidget {
+class SimpleInteractiveApp extends StatelessWidget {
 
 
   @override
@@ -55,6 +55,7 @@ class _SimpleAppPageState extends State<SimpleAppPage> {
   void _toggle(){
     setState(() {
       toggle = !toggle;
+      textContent = toggle ? "Simple Application Text" : "Simple Application Content";
     });
   }
 
@@ -71,15 +72,6 @@ class _SimpleAppPageState extends State<SimpleAppPage> {
     }
   }
 
-
   /// 文本内容
   String textContent = "Simple Application Text";
-
-  ///
-  void _updateData() {
-    setState(() {
-      toggle = !toggle;
-      textContent = toggle ? "Simple Application Text" : "Simple Application Content";
-    });
-  }
 }
