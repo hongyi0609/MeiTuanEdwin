@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'demo/LayoutDemo1.dart';
 import 'demo/SimpleInteractiveApp.dart';
+import 'demo/SimpleInteractiveManager.dart';
 
 void main() => runApp(
 //        MyApp()
 //        MyListViewDemo()
 //        LayoutDemo()
 //        LayoutDemo1()
-        SimpleInteractiveApp()
+//        SimpleInteractiveApp()
+    SimpleInteractiveManagerDemo()
 //        FadeAnimation()
 //        MaterialApp(
 //          home: PainterDemo(),
