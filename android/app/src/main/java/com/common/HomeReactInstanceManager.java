@@ -45,6 +45,7 @@ public class HomeReactInstanceManager {
             reactInstanceManager = ReactInstanceManager.builder()
                     .setApplication(activity.getApplication())
                     .setCurrentActivity(activity)
+                    // 调试时放开，用于创建RN环境，方便debug
 //                    .setBundleAssetName("assets://" + "react" + File.separator + "index.android.bundle")
                     .setJSBundleFile("assets://" + "react" + File.separator + "index.android.bundle")
                     .setJSMainModulePath("index")
