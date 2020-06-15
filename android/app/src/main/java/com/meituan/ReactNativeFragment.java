@@ -27,6 +27,8 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by Edwin,CHEN on 2019/10/14.
+ * ReactRootView容器，ViewPager的一个page
+ * 用于跟React Native层交互，不依赖ReactMainApplication
  */
 
 public class ReactNativeFragment extends BaseFragment {
@@ -91,7 +93,7 @@ public class ReactNativeFragment extends BaseFragment {
 	private View.OnClickListener l = (v) -> {
 		switch (v.getId()) {
 			case R.id.open_meituan_text_view:
-				startActivity(new Intent(getActivity(), MainActivity.class));
+				startActivity(new Intent(getActivity(), ReactMainActivity.class));
 				break;
 			case R.id.event_bus_sender_text_view:
 				EventBus.getDefault().post(new ReactNativeEvent());
