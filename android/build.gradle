@@ -38,6 +38,10 @@ allprojects {
     }
 }
 
+/**
+ * 为了能够使Flutter虚拟机一直处于激活状态，需要把虚拟机环境依赖文件导入到原生应用的assets中
+ * 新版flutter过程生成的aar包已经封装了这些依赖
+ */
 //task copyFlutterAssets(type: Copy){
 //    copy {
 //        println("copy task is to keep the flutter VM maintain.")

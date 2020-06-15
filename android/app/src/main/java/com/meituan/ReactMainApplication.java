@@ -21,7 +21,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-public class MainApplication extends Application implements ReactApplication {
+public class ReactMainApplication extends Application implements ReactApplication {
 
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
         @Override
@@ -33,7 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected ReactInstanceManager createReactInstanceManager() {
 //            return super.createReactInstanceManager();
             ReactInstanceManagerBuilder builder = ReactInstanceManager.builder().
-                    setApplication(MainApplication.this).
+                    setApplication(ReactMainApplication.this).
                     setJSMainModulePath(this.getJSMainModuleName()).
                     setUseDeveloperSupport(this.getUseDeveloperSupport()).
                     setRedBoxHandler(this.getRedBoxHandler()).

@@ -2,7 +2,12 @@ package com.meituan;
 
 import com.facebook.react.ReactActivity;
 
-public class MainActivity extends ReactActivity {
+/**
+ * @author Edwin
+ * React Native应用容器，依赖ReactMainApplication
+ */
+
+public class ReactMainActivity extends ReactActivity {
 
     /**
      * Returns the name of the main component registered from JavaScript.
