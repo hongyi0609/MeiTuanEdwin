@@ -1,11 +1,11 @@
 rootProject.name = 'MeiTuan'
 
 include ':app'
-setBinding(new Binding([gradle: this]))
-evaluate(
-        new File(
-                // 绑定settings.gradle的父目录下，my_flutter项目中的my_flutter/.android/include_flutter.groovy文件
-                settingsDir.parentFile,
-                'my_flutter/.android/include_flutter.groovy'
-        )
-)
+//setBinding(new Binding([gradle: this]))
+//evaluate(
+//        new File(
+//                // 绑定settings.gradle的父目录下，my_flutter项目中的my_flutter/.android/include_flutter.groovy文件
+//                settingsDir.parentFile,
+//                'my_flutter/.android/include_flutter.groovy'
+//        )
+//)

@@ -38,10 +38,10 @@ allprojects {
     }
 }
 
-task copyFlutterAssets(type: Copy){
-    copy {
-        println("copy task is to keep the flutter VM maintain.")
-        from "$rootDir/../my_flutter/.android/Flutter/build/intermediates/flutter/debug/flutter_assets"
-        into "$rootDir/app/src/main/assets/flutter_assets"
-    }
-}
+//task copyFlutterAssets(type: Copy){
+//    copy {
+//        println("copy task is to keep the flutter VM maintain.")
+//        from "$rootDir/../my_flutter/.android/Flutter/build/intermediates/flutter/debug/flutter_assets"
+//        into "$rootDir/app/src/main/assets/flutter_assets"
+//    }
+//}
