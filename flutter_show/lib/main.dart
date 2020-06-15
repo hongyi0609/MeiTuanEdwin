@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'demo/FlutterCallNativeDemo.dart';
 import 'demo/LayoutDemo1.dart';
 import 'demo/SimpleInteractiveApp.dart';
 import 'demo/SimpleInteractiveManager.dart';
@@ -10,7 +11,8 @@ void main() => runApp(
 //        LayoutDemo()
 //        LayoutDemo1()
 //        SimpleInteractiveApp()
-    SimpleInteractiveManagerDemo()
+//    SimpleInteractiveManagerDemo()
+    FlutterCallNativeDemo()
 //        FadeAnimation()
 //        MaterialApp(
 //          home: PainterDemo(),
