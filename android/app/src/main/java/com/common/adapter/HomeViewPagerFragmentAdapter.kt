@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.view.ViewGroup
+import com.algorithm.AlgorithmFragment
 import com.base.BaseFragment
 import com.common.Constants
 import com.flutter.FlutterFragment2
@@ -28,6 +29,7 @@ open class HomeViewPagerFragmentAdapter : FragmentPagerAdapter {
             list.add(ReactNativeFragment.createFragment())
             list.add(ReactNativeFragment.createFragment())
             list.add(RxJavaFragment.createFragment())
+            list.add(AlgorithmFragment.createFragment())
 
             list.add(ProxyFlutterFragment.createFragment(Constants.FLUTTER_INITIAL_ROUTE))
 //            list.add(FlutterFragment2.createFragment())
