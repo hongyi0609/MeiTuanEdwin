@@ -1,6 +1,5 @@
 package com.algorithm;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -10,8 +9,6 @@ import android.widget.TextView;
 
 import com.base.BaseFragment;
 import com.meituan.R;
-
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
