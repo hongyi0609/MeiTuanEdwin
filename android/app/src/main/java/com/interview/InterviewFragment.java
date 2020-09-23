@@ -19,6 +19,10 @@ import com.interview.invocation.ProxyDialog;
 import com.meituan.R;
 
 import java.lang.reflect.Proxy;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by Edwin on 2020/9/10.
@@ -52,17 +56,33 @@ public class InterviewFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.interview_fragment, container, false);
         mTextView = view.findViewById(R.id.invocation_handler_text_view);
         mTextView.setOnClickListener(l);
+        view.findViewById(R.id.countdown_latch_text_view).setOnClickListener(l);
+        view.findViewById(R.id.thread_pool_add_worker_text_view).setOnClickListener(l);
         return view;
     }
 
     View.OnClickListener l = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            showDialog();
+            switch (v.getId()) {
+                case R.id.invocation_handler_text_view:
+                    showInvocationHandlerDialog();
+                    break;
+                case R.id.countdown_latch_text_view:
+                    CountdownLatchDemo();
+                    break;
+                case R.id.thread_pool_add_worker_text_view:
+                    ThreadPoolExecutorCheckAddWorker();
+                    break;
+                case R.id.reentrant_lock_text_view:
+                    ReentrantLockDemo();
+                    break;
+
+            }
         }
     };
 
-    private void showDialog() {
+    private void showInvocationHandlerDialog() {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
         mBuilder.setTitle("Interview");
         mBuilder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -92,4 +112,67 @@ public class InterviewFragment extends BaseFragment {
         alertDialog.show();
     }
 
+    private void CountdownLatchDemo() {
+        CountDownLatch mCountDownLatch = new CountDownLatch(2);
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(100);
+                    mCountDownLatch.countDown();
+                } catch (InterruptedException e) {
+                    mCountDownLatch.countDown();
+                }
+            }
+        });
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(200);
+                    mCountDownLatch.countDown();
+                } catch (InterruptedException e) {
+                    mCountDownLatch.countDown();
+                }
+            }
+        });
+
+        try {
+            mCountDownLatch.await(); // 阻塞当前线程
+        } catch (InterruptedException e) {
+            Log.d(TAG,"countDownLatchException = " + e.getMessage());
+        }
+    }
+
+    /**
+     * 验证死锁
+     */
+    private void ThreadPoolExecutorCheckAddWorker() {
+        final boolean[] isAddWorker = {false};
+        while (!isAddWorker[0]) {
+            Executors.newSingleThreadExecutor().execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        isAddWorker[0] = true;
+                    }
+                }
+            });
+        }
+    }
+
+    private void ReentrantLockDemo() {
+        ReentrantLock lock = new ReentrantLock();
+        try {
+            lock.lock();
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            Log.d(TAG,"ReentrantLock#InterruptedException = " + e.getMessage());
+        } finally {
+            lock.unlock();
+        }
+    }
 }
