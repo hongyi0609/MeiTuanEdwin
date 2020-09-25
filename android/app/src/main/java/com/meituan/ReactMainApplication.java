@@ -2,6 +2,7 @@ package com.meituan;
 
 import android.app.Application;
 
+import com.base.BaseApplication;
 import com.common.react.HomeReactPackage;
 import com.facebook.infer.annotation.Assertions;
 import com.facebook.react.ReactApplication;
@@ -21,7 +22,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-public class ReactMainApplication extends Application implements ReactApplication {
+public class ReactMainApplication extends BaseApplication implements ReactApplication {
 
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
         @Override
