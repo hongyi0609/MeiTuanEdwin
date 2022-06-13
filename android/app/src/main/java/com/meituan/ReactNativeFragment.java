@@ -73,7 +73,9 @@ public class ReactNativeFragment extends BaseFragment {
 		eventBusFlagText = root.findViewById(R.id.event_bus_flag_text_view);
 		root.findViewById(R.id.event_bus_sender_text_view).setOnClickListener(l);
 		root.findViewById(R.id.send_to_js_text_view).setOnClickListener(l);
+/*
 		initReactRootView(root);
+*/
 		return root;
 	}
 

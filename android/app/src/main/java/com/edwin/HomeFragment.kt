@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
     private fun initTabLayout(){
         homeTabLayout!!.setupWithViewPager(homeViewPager)
 
-        val titles = arrayOf("美团First","Interview","RxJava","Algorithm","Flutter")
+        val titles = arrayOf("美团First","Interview","饿了么","RxJava","Algorithm","Flutter")
         for ( i in 1 .. titles.size ) {
             homeTabLayout!!.getTabAt(i-1)!!.text = titles[i-1]
             if (i == 3){

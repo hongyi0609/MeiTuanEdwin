@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.algorithm.AlgorithmFragment
 import com.base.BaseFragment
 import com.common.Constants
+import com.ele.EleFragment
 import com.flutter.ProxyFlutterFragment
 import com.interview.InterviewFragment
 import com.meituan.ReactNativeFragment
@@ -28,6 +29,7 @@ open class HomeViewPagerFragmentAdapter : FragmentPagerAdapter {
         if (list.size <= 0){
             list.add(ReactNativeFragment.createFragment())
             list.add(InterviewFragment.createFragment())
+            list.add(EleFragment.createFragment())
             list.add(RxJavaFragment.createFragment())
             list.add(AlgorithmFragment.createFragment())
 
