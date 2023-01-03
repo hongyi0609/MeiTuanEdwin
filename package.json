@@ -11,17 +11,17 @@
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "^16.3.1",
-    "react-native": "^0.55.4",
+    "react-native": "^0.70.6",
     "react-native-page-control": "^1.1.1",
     "react-native-refresh-list-view": "^1.0.6",
     "react-native-scrollable-tab-view": "^0.8.0",
     "react-navigation": "^1.0.0-beta.19"
   },
   "devDependencies": {
-    "babel-jest": "19.0.0",
+    "babel-jest": "29.3.1",
     "babel-preset-react-native": "4.0.0",
     "flow-bin": "^0.45.0",
-    "jest": "22.4.3",
+    "jest": "29.3.1",
     "react-test-renderer": "16.3.1"
   },
   "jest": {
