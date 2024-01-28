@@ -1,0 +1,82 @@
+// publish flutter-debug.aar
+//plugins {
+//    id 'java'
+//    // Gradle 7.0+ 版本
+//    id 'maven-publish'
+//}
+
+// 获取阿里云效账号供发布使用，将 aliyun.properties 添加到 gitignore 文件防止密码遗失
+def aliProperties = new Properties()
+def aliPropertiesFile = new File("$rootDir.parentFile", 'aliyun.properties')
+if (aliPropertiesFile.exists()) {
+    aliPropertiesFile.withReader('UTF-8') { reader ->
+        aliProperties.load(reader)
+    }
+}
+
+def aliusername = aliProperties.getProperty('credentials.username')
+def alipassword = aliProperties.getProperty('credentials.password')
+
+println("Aliyun credentials username = ${aliusername}, password = ${alipassword}")
+if (aliusername == null || alipassword == null) {
+    throw new GradleException("Aliyun credentials not found. Define aliyun.username and aliyun.password in the aliyun.properties file.")
+}
+
+group 'com.example.my_flutter'
+version '1.1.4'
+def artifactIdStr = 'flutter_debug'
+
+apply plugin: 'maven-publish'
+task comps { // 让我们看看它有哪些组件：
+    afterEvaluate {
+        println("Components: " + components*.name)
+    }
+}
+def directoryToPublish = "$rootDir.parentFile/build/host/outputs/repo/com/example/my_flutter/flutter_debug/$project.version"
+afterEvaluate {
+    publishing {
+        publications {
+            flutter(MavenPublication) {
+                from components.debug
+                println("groupId = " + groupId + ",artifactId = " + artifactIdStr + ",version = " + version + ",buildDir = " + buildDir)
+                groupId = "$project.group"
+                artifactId = artifactIdStr
+                version = "$project.version"
+
+//                artifact "$buildDir/outputs/aar/flutter-debug.aar" //aar artifact you want to publish
+                // artifact "$directoryToPublish/${artifactIdStr}-${project.version}.aar"
+                // artifact "$directoryToPublish/${artifactIdStr}-${project.version}.module"
+                // artifact "$directoryToPublish/${artifactIdStr}-${project.version}.pom"
+
+//                artifact("$directoryToPublish/${artifactIdStr}-${project.version}.aar") /*{
+//                    classifier 'aar' // 使用 'aar' 作为分类器
+//                }*/
+//                artifact("$directoryToPublish/${artifactIdStr}-${project.version}.module") /*{
+//                    classifier 'module' // 使用 'module' 作为分类器
+//                }*/
+//                artifact("$directoryToPublish/${artifactIdStr}-${project.version}.pom")/* {
+//                    classifier 'pom' // 使用 'pom' 作为分类器
+//                    extension 'pom' // 设置为 'pom' 类型
+//                }*/
+            }
+        }
+        repositories {
+//            maven {
+//                url = 'https://packages.aliyun.com/maven/repository/2443959-release-V0Shv7/'
+//                credentials {
+//                    username = aliusername
+//                    password = alipassword
+//                }
+//            }
+            maven {
+                println("2222222----Aliyun credentials: username = $aliusername, password = $alipassword")
+
+                url = 'https://packages.aliyun.com/maven/repository/2443959-snapshot-5T0GnA/'
+                credentials {
+                    username = aliusername
+                    password = alipassword
+                }
+            }
+        }
+    }
+}

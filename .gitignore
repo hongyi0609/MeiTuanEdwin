@@ -32,6 +32,22 @@ project.xcworkspace
 ios/Pods
 ios/F8v2.xcworkspace
 
+#my_flutter
+my_flutter/.android/build
+my_flutter/.android/Flutter/build
+my_flutter/.android/Flutter/build.gradle.bak
+my_flutter/.android/publish.log
+my_flutter/.dart_tool
+my_flutter/.idea
+my_flutter/build
+my_flutter/aliyun.properties
+my_flutter/build.log
+my_flutter/publish.gradle.bak
+my_flutter/temp_file
+my_flutter/tmpfile
+
+yarn-error.log
+
 # Android/IJ
 #
 .idea

@@ -1,0 +1,13 @@
+#my_flutter
+.android/build
+.android/Flutter/build
+.android/Flutter/build.gradle.bak
+.android/publish.log
+.dart_tool
+.idea
+build
+aliyun.properties
+build.log
+publish.gradle.bak
+temp_file
+tmpfile
