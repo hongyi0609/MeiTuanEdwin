@@ -2,10 +2,11 @@ package com.interview;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import com.base.BaseFragment;
 import com.interview.invocation.DialogApi;
 import com.interview.invocation.DialogProxyHandler;
 import com.interview.invocation.ProxyDialog;
+import com.interview.service.MyIntentService;
+import com.interview.service.MyService;
 import com.meituan.R;
 
 import java.lang.reflect.Proxy;
@@ -36,6 +39,8 @@ public class InterviewFragment extends BaseFragment {
 
     private Context mContext;
 
+    private View root;
+
     private TextView mTextView;
 
     public static BaseFragment createFragment(){
@@ -46,68 +51,83 @@ public class InterviewFragment extends BaseFragment {
     public void onAttach(@org.jetbrains.annotations.Nullable Context context) {
         super.onAttach(context);
         if (mContext == null) {
-            mContext = context;
+            mContext = getContext();
         }
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.interview_fragment, container, false);
-        mTextView = view.findViewById(R.id.invocation_handler_text_view);
+        root = inflater.inflate(R.layout.interview_fragment, container, false);
+        mTextView = root.findViewById(R.id.invocation_handler_text_view);
         mTextView.setOnClickListener(l);
-        view.findViewById(R.id.countdown_latch_text_view).setOnClickListener(l);
-        view.findViewById(R.id.thread_pool_add_worker_text_view).setOnClickListener(l);
-        return view;
+        root.findViewById(R.id.countdown_latch_text_view).setOnClickListener(l);
+        root.findViewById(R.id.thread_pool_add_worker_text_view).setOnClickListener(l);
+        root.findViewById(R.id.service_text_view).setOnClickListener(l);
+        return root;
     }
 
-    View.OnClickListener l = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.invocation_handler_text_view:
-                    showInvocationHandlerDialog();
-                    break;
-                case R.id.countdown_latch_text_view:
-                    CountdownLatchDemo();
-                    break;
-                case R.id.thread_pool_add_worker_text_view:
-                    ThreadPoolExecutorCheckAddWorker();
-                    break;
-                case R.id.reentrant_lock_text_view:
-                    ReentrantLockDemo();
-                    break;
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (mTextView != null) {
+            mTextView = null;
+        }
+        if (root != null) {
+            root = null;
+        }
+    }
 
-            }
+    View.OnClickListener l = v -> {
+        switch (v.getId()) {
+            case R.id.invocation_handler_text_view:
+                showInvocationHandlerDialog();
+                break;
+            case R.id.countdown_latch_text_view:
+                CountdownLatchDemo();
+                break;
+            case R.id.thread_pool_add_worker_text_view:
+                ThreadPoolExecutorCheckAddWorker();
+                break;
+            case R.id.reentrant_lock_text_view:
+                ReentrantLockDemo();
+                break;
+            case R.id.service_text_view:
+                ServiceDemo();
+                break;
+
         }
     };
+
+    private void ServiceDemo(){
+        if(mContext != null){
+            Intent startIntent = new Intent(mContext, MyService.class);
+            mContext.startService(startIntent); // 启动服务
+
+            // 启动IntentService
+            Intent intentServiceIntent = new Intent(mContext, MyIntentService.class);
+            mContext.startService(intentServiceIntent);
+        }
+    }
 
     private void showInvocationHandlerDialog() {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
         mBuilder.setTitle("Interview");
-        mBuilder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                ProxyDialog proxyDialog = new ProxyDialog();
-                DialogProxyHandler dialogProxyHandler = new DialogProxyHandler(proxyDialog);
-                DialogApi dialogApi = (DialogApi) Proxy.newProxyInstance(
-                        proxyDialog.getClass().getClassLoader(),
-                        proxyDialog.getClass().getInterfaces(),
-                        dialogProxyHandler);
-                Log.d(TAG, "动态代理前———————— ");
-                proxyDialog.handleDialog();
-                proxyDialog.handleDialogTitle("你大爷！");
-                Log.d(TAG, "动态代理后———————— ");
-                dialogApi.handleDialog();
-                dialogApi.handleDialogTitle("你大爷！");
-                dialog.dismiss();
-            }
-        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
+        mBuilder.setPositiveButton("确定", (dialog, which) -> {
+            ProxyDialog proxyDialog = new ProxyDialog();
+            Log.d(TAG, "proxy动态代理前———————— ");
+            proxyDialog.handleDialog();
+            proxyDialog.handleDialogTitle("你大爷！");
+            Log.d(TAG, "proxy动态代理后———————— ");
+            DialogProxyHandler dialogProxyHandler = new DialogProxyHandler(proxyDialog);
+            DialogApi dialogApi = (DialogApi) Proxy.newProxyInstance(
+                    proxyDialog.getClass().getClassLoader(),
+                    proxyDialog.getClass().getInterfaces(),
+                    dialogProxyHandler);
+            dialogApi.handleDialog();
+            dialogApi.handleDialogTitle("你大爷！");
+            dialog.dismiss();
+        }).setNegativeButton("取消", (dialog, which) -> dialog.dismiss());
         final AlertDialog alertDialog = mBuilder.create();
         alertDialog.show();
     }
@@ -151,14 +171,11 @@ public class InterviewFragment extends BaseFragment {
     private void ThreadPoolExecutorCheckAddWorker() {
         final boolean[] isAddWorker = {false};
         while (!isAddWorker[0]) {
-            Executors.newSingleThreadExecutor().execute(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        isAddWorker[0] = true;
-                    }
+            Executors.newSingleThreadExecutor().execute(() -> {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    isAddWorker[0] = true;
                 }
             });
         }
