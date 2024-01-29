@@ -2,9 +2,9 @@ package com.edwin
 
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.view.ViewPager
+import com.google.android.material.tabs.TabLayout
+import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,11 +20,11 @@ class HomeFragment : Fragment() {
 
     private var mContext: Context? = null
 
-    private var homeViewPager :ViewPager? = null
+    private var homeViewPager : ViewPager? = null
 
-    private var homeTabLayout :TabLayout? = null
+    private var homeTabLayout : TabLayout? = null
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
 
         mContext = context
@@ -61,7 +61,7 @@ class HomeFragment : Fragment() {
     private fun initViewPager(){
         homeViewPager!!.adapter = HomeViewPagerFragmentAdapter(childFragmentManager)
         homeViewPager!!.offscreenPageLimit = Constants.PAGE_SCREEN_LIMIT
-        homeViewPager!!.addOnPageChangeListener(object :ViewPager.OnPageChangeListener{
+        homeViewPager!!.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(p0: Int) {
 
             }
@@ -78,7 +78,7 @@ class HomeFragment : Fragment() {
     }
 
     companion object {
-        fun createHomeFragment() :Fragment{
+        fun createHomeFragment() : Fragment {
             return HomeFragment()
         }
     }

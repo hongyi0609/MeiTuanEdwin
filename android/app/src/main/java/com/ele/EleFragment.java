@@ -52,7 +52,7 @@ public class EleFragment extends BaseFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (mContext == null) {
-            mContext = context;
+            mContext = getContext();
         }
     }
 

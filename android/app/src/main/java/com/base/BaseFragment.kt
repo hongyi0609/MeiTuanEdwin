@@ -2,7 +2,8 @@ package com.base
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
+import java.lang.ref.WeakReference
 
 /**
  * Created by Edwin,CHEN on 2020/5/19.
@@ -12,24 +13,22 @@ open class BaseFragment : Fragment() {
         val TAG = BaseFragment::class.java.simpleName
     }
 
-    init {
+    private lateinit var mContext :Context
 
-    }
-    var mContext :Context? = null
+    private lateinit var reference: WeakReference<Context>
 
     private var hasSelected :Boolean = false
 
     private var hasCalledFirstFetchData = false
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (mContext == null) {
-            mContext = context
-        }
+        mContext = context
+        reference = WeakReference<Context>(mContext)
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
+    override fun getContext(): Context? {
+        return reference.get()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

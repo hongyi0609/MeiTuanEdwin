@@ -1,13 +1,14 @@
 package com.common.adapter
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import android.view.ViewGroup
 import com.algorithm.AlgorithmFragment
 import com.base.BaseFragment
 import com.common.Constants
 import com.ele.EleFragment
+import com.flutter.FlutterFragment2
 import com.flutter.ProxyFlutterFragment
 import com.interview.InterviewFragment
 import com.meituan.ReactNativeFragment
@@ -25,7 +26,7 @@ open class HomeViewPagerFragmentAdapter : FragmentPagerAdapter {
     private var currentSelectedPage :BaseFragment? = null
 
 
-    constructor(fm:FragmentManager) :super(fm){
+    constructor(fm: FragmentManager) :super(fm){
         if (list.size <= 0){
             list.add(ReactNativeFragment.createFragment())
             list.add(InterviewFragment.createFragment())
@@ -33,7 +34,7 @@ open class HomeViewPagerFragmentAdapter : FragmentPagerAdapter {
             list.add(RxJavaFragment.createFragment())
             list.add(AlgorithmFragment.createFragment())
 
-            list.add(ProxyFlutterFragment.createFragment(Constants.FLUTTER_INITIAL_ROUTE))
+            list.add(ProxyFlutterFragment.createFragment())
 //            list.add(FlutterFragment2.createFragment())
         }
 //        if (titles.size <= 0) {
@@ -59,6 +60,7 @@ open class HomeViewPagerFragmentAdapter : FragmentPagerAdapter {
         super.setPrimaryItem(container, position, obj)
         if (isCurrentSelectedPageChanged) {
             currentSelectedPage = obj as BaseFragment
+            currentSelectedPage
             if (currentSelectedPage != null) {
                 currentSelectedPage!!.onPageSelected()
             }
