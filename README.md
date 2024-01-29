@@ -1,4 +1,4 @@
-# MeiTuan App Write In latest React-Native(0.50.1)
+# MeiTuan App Write In latest React-Native(0.55.1)
 
 ## 视频教程
 **现已推出全套视频教程，从创建工程讲起，一行一行编写代码，直至完成整个项目。**
@@ -74,7 +74,7 @@ $ react-native start
 If you like this project, please give me a star  :)
 
 
-# 高仿美团客户端 React-Native版(0.50.1)
+# 高仿美团客户端 React-Native版(0.55.1)
 
 ## 简介
 
@@ -128,6 +128,7 @@ $ npm install
 3. **Running on iOS**
 
 ```
+运行 npm install -g react-native 来全局安装 react-native
 $ react-native run-ios
 ```
 
