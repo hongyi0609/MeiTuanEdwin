@@ -3,12 +3,14 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "node node_modules/react-native/local-cli/cli.js --openssl-legacy-provider start",
     "test": "jest",
     "ios": "react-native run-ios",
     "android": "react-native run-android"
   },
   "dependencies": {
+    "@react-native/metro-config": "^0.74.0",
+    "cli": "^1.0.1",
     "prop-types": "^15.6.0",
     "react": "^16.3.1",
     "react-native": "^0.55.4",
