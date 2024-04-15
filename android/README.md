@@ -1,9 +1,13 @@
-# 爱佳仁 App is developed With React-Native(0.50.1)、Flutter and Android. Otherwise, it follows from huanxsd's MeiTuan Project in React Native section.
+# 爱佳仁 App is developed With React-Native(0.55.1)、Flutter and Android. Otherwise, it follows from huanxsd's MeiTuan Project in React Native section.
+
+还记得 2019 年的那个春夏秋冬天，当时 React Native 像打了鸡血似的在某大厂蔓延，我在这样的背景下认识了跨端开发，从此走上了 Android 工程师向移动工程师转变的不归路。当时能够找到的demo
+就是美团的 RN 实现方案，遂 fork 了一份。跑起来也是六六的，但是好景不长啊。市面上对 flutter 技术的呼声也甚嚣尘上，我就在MeiTuanEdwin这个库的基础上也把 flutter 给安插进来
 
 ## 项目特色
 ### React Native
 RN通过两种方式引入原生框架：
-1. RN工程作为一个单独的View，理论上可以渲染到任何使用View的原生ViewGroup容器中，项目中的ReactNativeFragment便是一个示例。由于降低了RN与Native的耦合，很适合大型项目的开发，原生端、RN端三个团队相互合作，可以极大地提高开发效率。项目中RN过程被打包成index.android.bundle存放于app/src/main/assets/react目录下便是一个例子
+1. RN工程作为一个单独的View，理论上可以渲染到任何使用View的原生ViewGroup容器中，项目中的ReactNativeFragment便是一个示例。由于降低了RN与Native的耦合，很适合大型项目的开发，原生端、RN端三个团队相互合作，
+  可以极大地提高开发效率。项目中RN过程被打包成index.android.bundle存放于app/src/main/assets/react目录下便是一个例子
   bundle打包命令：react-native bundle --platform android --dev false --entry-file index.js --bundle-output ./android/app/src/main/assets/react/index.android.bundle --assets-dest ./android/app/src/main/res/
   其中，在与RN交互的过程中，Android原生端「以下简称Native」引入了EventBus库。原生端接收到来自RN的消息后，通过EventBus可以很方便的将消息通知给各个组件
 
@@ -13,12 +17,17 @@ RN通过两种方式引入原生框架：
 
 ## Flutter
    Flutter跟RN类似，也是基于React框架的跨平台框架实现。项目中对flutter的引入也包括两种方式：
-1. 同样是考虑的跨端开发的成本问题，在一些大型项目中去耦合是必须的，项目中通过在引入aar文件依赖的方式，引入Flutter项目。值得庆幸的是，新版的Flutter不需要针对编译生成flutter-release.aar包做二次打包，因为它内部已经包括了Flutter虚拟机环境，这种开发模式在master分支实现
-2. flutter代码的开发是基于Dart语言的，该语法跟ES6及其相似。状态、属性、弹性布局等元素一应俱全。特别照顾了大家的学习成本。在开发过程中，直接按照[官方教程](https://flutter.dev/docs/get-started/install)引入就好了。另外，为了能够使Flutter虚拟机一直处于激活状态，需要把虚拟机环境依赖文件导入到原生应用的assets中，根项目中的copyFlutterAssets任务就是为了这个目的而存在的。这种开发模式在develop分支实现
+1. 同样是考虑的跨端开发的成本问题，在一些大型项目中去耦合是必须的，项目中通过在引入aar文件依赖的方式，引入Flutter项目。值得庆幸的是，
+新版的Flutter不需要针对编译生成flutter-release.aar包做二次打包，因为它内部已经包括了Flutter虚拟机环境，这种开发模式在master分支实现
 
-  其实以上两种方式，可以通过一个分支搞定，也就一个开关的事儿。
+2. flutter代码的开发是基于Dart语言的，该语法跟ES6及其相似。状态、属性、弹性布局等元素一应俱全。特别照顾了大家的学习成本。在开发过程中，
+直接按照[官方教程](https://flutter.dev/docs/get-started/install)引入就好了。另外，为了能够使Flutter虚拟机一直处于激活状态，需要把
+虚拟机环境依赖文件导入到原生应用的assets中，根项目中的copyFlutterAssets任务就是为了这个目的而存在的。这种开发模式在develop分支实现
+其实以上两种方式，可以通过一个分支搞定，也就一个开关的事儿。
 
-3. 为了调试方便，项目中还创建了一个完全孤立的flutter_show项目，这是一个纯Flutter项目，便于调试和热加载，仅用于初期学习
+3. 为了调试方便，项目中还创建了一个完全孤立的flutter_show项目，这是一个纯Flutter项目，便于调试和热加载，仅用于初期学习 
+4. Add Flutter to an existing app
+   [documentation](https://docs.flutter.dev/add-to-app)
 
 ## Android
   项目创建初期，原生端是基于Java开发的。后来为了追潮流，转而使用kotlin语言进行原生开发。在公司的项目开发过程中，突然发现有人使用RxJava，搞得我很不爽，就在项目中引入了RxJava开发把它的操作符露了一遍。在研究kotlin的协程时才发现，RxJava也被直接扩充到kotlinx.coroutines的相关相应模块中。随着开发的进行，要做进一步的优化和kotlin化、Flutter化、潮流化。
@@ -26,11 +35,12 @@ RN通过两种方式引入原生框架：
 ## branches
 1. master分支，默认分支
 2. develop分支，开发分支
-目前这两个分支的主要区别在于，flutter的引入方式不同。前者依赖aar，后者依赖flutter模块
+3. local分支，虽然叫本地分支，其实是最新的开发分支
+目前这几个分支的主要区别在于， local 分支依赖 aar发布适合独立开发，其他两个分支我也忘了啥情况了
 
 ## aar打包
-    flutter build apk
-    切换到flutter目录下，执行以上命令，在MeiTuan/.android/Flutter/build/outputs/aar/目录下生成aar，把这个aar拷出来直接放到你原生项目里取依赖便可以摆脱依赖module的麻烦。
+    
+    建议去my_flutter 下面找 README.md 文档读读，别在这儿下耽误功夫
 
 
 ## screen shot for Android

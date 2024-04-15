@@ -7,6 +7,7 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Display
 import android.view.View
+import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
 import com.meituan.BuildConfig
@@ -156,6 +157,13 @@ class DpiUtil {
             }
 
             return defaultDisplay
+        }
+
+        /**
+         * 获取view 在屏幕中的固定比例，用于曝光统计
+         */
+        private fun getDisplayRatio(viewGroup: ViewGroup):Float {
+            return LayoutUtility.instance.calculateExposureRatio(viewGroup)
         }
     }
 }

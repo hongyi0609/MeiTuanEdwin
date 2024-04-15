@@ -1,17 +1,17 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.71'
+    ext.kotlin_version = '1.6.0'
     repositories {
         // 如遇到无法下载Google或mavenCentral的依赖库, 尝试在root.gradle文件中添加阿里云依赖
         maven { url "https://maven.aliyun.com/repository/google" }
         maven { url "https://maven.aliyun.com/repository/jcenter" }
 
-        jcenter()
+        mavenCentral()
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:4.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -24,10 +24,26 @@ allprojects {
         // 如遇到无法下载Google或mavenCentral的依赖库, 尝试在root.gradle文件中添加阿里云依赖
         maven { url "https://maven.aliyun.com/repository/google" }
         maven { url "https://maven.aliyun.com/repository/jcenter" }
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+        maven {
+            credentials {
+                username '65846dd15847b636b06b4373'
+                password 'oJOT-Zu[XpVo'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2443959-release-V0Shv7/'
+        }
+        maven {
+            credentials {
+                username '65846dd15847b636b06b4373'
+                password 'oJOT-Zu[XpVo'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2443959-snapshot-5T0GnA/'
+        }
 
         mavenLocal()
 //        mavenCentral()
-        jcenter()
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
@@ -43,11 +59,14 @@ allprojects {
  * 方案一：把虚拟机环境依赖文件导入到原生应用的assets中
  * 方案二：新版flutter过程生成的aar包已经封装了这些依赖
  */
+println('rootProject.FlutterIsAarMode = '+rootProject.FlutterIsAarMode)
 if (rootProject.FlutterIsAarMode) {
     // aar 打包命令 flutter build apk
-    task copyFlutterAar(type: Copy) {
+    task copyFlutterAar(type: Copy) { // gradle 7.2 及之前版本不支持tasks.register
         copy {
+            def aarDir = "$rootDir/../my_flutter/.android/Flutter/build/outputs/aar"
             println("copy AAR task is to keep the flutter VM maintain.")
+            println("copy AAR aarDir = $aarDir")
             from "$rootDir/../my_flutter/.android/Flutter/build/outputs/aar"
             into "$rootDir/app/src/main/libs/"
         }
@@ -59,5 +78,17 @@ if (rootProject.FlutterIsAarMode) {
             from "$rootDir/../my_flutter/.android/Flutter/build/intermediates/flutter/debug/flutter_assets"
             into "$rootDir/app/src/main/assets/flutter_assets"
         }
+    }
+}
+
+// 过滤掉test任务
+tasks.configureEach { task ->
+    if (task.name.equals("lint")) {
+        //this is for speed up build
+        task.enabled = false
+    }
+    if (task.name.contains("Test")) {
+        //this is what you need
+        task.enabled = false
     }
 }

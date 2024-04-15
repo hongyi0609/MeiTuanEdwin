@@ -198,6 +198,9 @@ public class EleFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (webView != null) {
+            webView.destroy();
+        }
     }
 
     @Override

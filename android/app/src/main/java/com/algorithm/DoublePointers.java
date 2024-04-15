@@ -1,17 +1,70 @@
 package com.algorithm;
 
+import android.util.ArrayMap;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 public class DoublePointers {
 
     private static final String TAG = DoublePointers.class.getSimpleName();
 
     public static void demo() {
+        findSumNumbersDemo();
+
         findMaxArea();
         trapSolution();
         moveZeroDemo();
+    }
+
+    /**
+     * 题目：给定一个整型数组，找出数组中任意两数之和等于某个固定值（例如，target=13）的元素组合
+     */
+    private static void findSumNumbersDemo() {
+        int[] numbers = {3, 2, 10, 5, 6, 7, 11, 8};
+        int target = 13;
+        List<List<Integer>> list = twoSum(numbers, target);
+        Log.d(TAG, "twoSum 双指针法组合：");
+        for (List<Integer> element : list) {
+            Log.d(TAG, Arrays.toString(element.toArray()));
+        }
+    }
+
+    /**
+     * 题目：给定一个整型数组，找出数组中任意两数之和等于某个固定值（例如，target=13）的元素组合
+     * 0. 对数组进行排序
+     * 1. target =  a + b,
+     * 2. 给定 left、right 两个指针，分别从左右两侧轮询
+     * 3. numbers[left] + numbers[right] 跟 target 比较：== 保存元素组合，< 左指针向右移动，> 右指针向左移动
+     * 4. left == right 移动结束
+     *
+     * @param numbers
+     * @param target
+     * @return
+     */
+    private static List<List<Integer>> twoSum(int[] numbers, int target) {
+
+        Arrays.sort(numbers);
+
+        List<List<Integer>> resultList = new ArrayList<>();
+        int left = 0;
+        int right = numbers.length - 1;
+        while (left < right) {
+            if (target == numbers[left] + numbers[right]) {
+                resultList.add(Arrays.asList(numbers[left], numbers[right]));
+                left++;
+                right--;
+            } else if (target < numbers[left] + numbers[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return resultList;
     }
 
     /**
@@ -88,11 +141,19 @@ public class DoublePointers {
             int area = h * w;
             maxArea = Math.max(maxArea, area);
 
-            // 移动较小高度的指针
+            // 移动较小高度的指针, do while 逻辑为了提高性能
             if (height[left] < height[right]) {
-                left++;
+//              left++;
+                int oldLeft = height[left];
+                do {
+                    left++;
+                } while (left < right && height[left] < oldLeft);
             } else {
-                right--;
+//                right--;
+                int oldRight = height[right];
+                do {
+                    right--;
+                } while (left < right && height[right] < oldRight);
             }
         }
         return maxArea;

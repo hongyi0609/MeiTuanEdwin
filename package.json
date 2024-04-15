@@ -6,7 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js --openssl-legacy-provider start",
     "test": "jest",
     "ios": "react-native run-ios",
-    "android": "react-native run-android"
+    "android": "react-native run-android",
+    "clean": "rm -rf node_modules && rm -rf android/build && npm install"
   },
   "dependencies": {
     "@react-native/metro-config": "^0.74.0",

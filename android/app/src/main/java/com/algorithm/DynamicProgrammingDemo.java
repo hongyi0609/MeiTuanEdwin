@@ -9,6 +9,44 @@ public class DynamicProgrammingDemo {
         maximumSubArraySum();
         longestIncreasingSubsequence();
         maxDeliciousCandiesDemo();
+        // 背包问题：01
+        knapsackProblem01Demo();
+    }
+
+    /**
+     * 给定一组物品，每种物品都有自己的重量和价格，在限定的总重量内，如何选择最合适的物品放置在背包中才能使物品的价格最高。
+     * <a href="https://cloud.tencent.com/developer/article/2109839">图文结合 1</a>
+     * <a href="https://xiaoyuhen.com/blog/2019-03-30-knapsack-problem/">图文结合-js</a>
+     */
+    private static void knapsackProblem01Demo() {
+        String[] names= {"","sound","laptop","guita","phone"};
+        int[] w = {4, 3, 1, 1};//重量
+        int[] v = {3000, 2000, 1500, 2000}; //价值
+        int[][] tmp = findMaxWithInitDp(w,v);
+        Log.d(TAG, "max dp is " + tmp[w.length + 1][v.length + 1]);
+    }
+
+    private static int[][] findMaxWithInitDp(int[]w,int[]v) {
+        int n = w.length; // 物品的种类
+        int m = v.length; // 物品的价值
+        int[][]dp = new int[n+1][m+1]; // 所有物品*价值的最优解组合
+
+        // 遍历物品数组，寻找1-n件物品放入背包的最佳组合。0 件物品放包里，价值一定是 0，所以 dp[0] == 0;(java默认)
+        for (int i=1;i<=n;i++){
+            // 遍历物品的价值：判断是否可以装进背包
+            for (int j=0;j<=m;j++){
+                // 转不进，不能塞了
+                if(j < v[i]){
+                    dp[i][j] = dp[i-1][j];
+                } else {
+                    // 装得下，比较装入后的价值跟之前最优解哪个更有价值
+                    int valuePre = dp[i-1][j]; // 之前最优解
+                    int value = dp[i-1][j-v[j]] + v[j]; // 剩余空间价值 + 当前物品价值
+                    dp[i][j] = Math.max(valuePre, value); // 取最大值
+                }
+            }
+        }
+        return dp;
     }
 
     /**
@@ -80,7 +118,7 @@ public class DynamicProgrammingDemo {
                 // 找到每个子序列里的最长增长序列，1-3-5-4-7，最长是 1-3-5-7，当然要从 1 开始找
                 if(nums[i] > nums[j]){
                     // 说明当前子序列中还可能有更大的值，更新 maxVal
-                    // 前面 j 个序列上升自序列长度是： maxVal.
+                    // 前面 j 个序列上升子序列长度是： maxVal.
                     // j < i, num[j] 要么并入序列，增加序列的长度，要么不并入序列（因为可能是降序）
                     maxVal = Math.max(maxVal, dp[j]);
                 }
@@ -117,7 +155,8 @@ public class DynamicProgrammingDemo {
         int maxSum = nums[0];
 
         for (int i = 1; i < nums.length; i++) {
-            // 根据动态规划原则，最大和要么包含当前值，要么不包含当前值
+            // 根据动态规划原则，最大和要么包含当前值，要么不包含当前值，注意这里有个题眼：跟当前元素比较，
+            // 不是跟currentSum 比较
             currentSum = Math.max(nums[i], currentSum + nums[i]);
             // 找到最大值之后进行替换
             maxSum = Math.max(maxSum, currentSum);

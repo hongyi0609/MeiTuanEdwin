@@ -144,6 +144,8 @@ public class EncryptedOkHttpClient {
         }
 
         /**
+         * <p>注意：PKCS1 因为安全问题废弃了，建议使用 OAEP</p>
+         *
          * Cipher.getInstance("RSA/ECB/PKCS1Padding") 表示获取一个Cipher对象，该对象使用RSA算法、ECB模式和PKCS1填充方式。
          * Cipher 类是Java加密框架（Java Cryptography Extension，JCE）中的一个类，用于实现加密和解密操作。
          * "RSA" 是一种非对称加密算法，使用公钥进行加密，私钥进行解密。

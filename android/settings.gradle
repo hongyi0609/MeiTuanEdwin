@@ -1,11 +1,27 @@
+import org.gradle.api.initialization.resolve.RepositoriesMode
+
 rootProject.name = 'MeiTuan'
 
 include ':app'
-//setBinding(new Binding([gradle: this]))
-//evaluate(
-//        new File(
-//                // 绑定settings.gradle的父目录下，my_flutter项目中的my_flutter/.android/include_flutter.groovy文件
-//                settingsDir.parentFile,
-//                'my_flutter/.android/include_flutter.groovy'
-//        )
-//)
+/*setBinding(new Binding([gradle: this]))
+println("settingsDir: dir = $settingsDir.parentFile")
+evaluate(
+        new File(
+                // 绑定settings.gradle的父目录下，my_flutter项目中的my_flutter/.android/include_flutter.groovy文件
+                settingsDir.parentFile,
+                'my_flutter/.android/include_flutter.groovy'
+        )
+)*/
+//dependencyResolutionManagement{
+//        repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+//        repositories {
+//                // 如遇到无法下载Google或mavenCentral的依赖库, 尝试在root.gradle文件中添加阿里云依赖
+//                maven { url "https://maven.aliyun.com/repository/google" }
+//                maven { url "https://maven.aliyun.com/repository/jcenter" }
+//
+//                google()
+//                mavenCentral()
+//        }
+//}
+//include ':my_flutter'
+//project(':my_flutter').projectDir = new File('../my_flutter')
