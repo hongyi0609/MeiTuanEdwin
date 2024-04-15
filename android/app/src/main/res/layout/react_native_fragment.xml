@@ -12,7 +12,7 @@
         android:gravity="center_horizontal"
         android:padding="15dp">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="10dp"
@@ -27,7 +27,25 @@
                 android:padding="5dp"
                 android:text="去美团RN页面"
                 android:textColor="@android:color/holo_red_dark" />
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
+
+            <TextView
+                android:id="@+id/open_flutter_activity_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="去FlutterActivity页面"
+                android:textColor="@android:color/holo_purple" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/event_bus_sender_text_view"

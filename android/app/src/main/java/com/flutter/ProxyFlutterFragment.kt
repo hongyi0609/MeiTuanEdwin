@@ -1,62 +1,52 @@
 package com.flutter
 
-import android.content.Context
-import android.graphics.PixelFormat
+import android.content.Intent
 import android.os.Bundle
-import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.base.BaseFragment
-import io.flutter.facade.Flutter
-import io.flutter.facade.FlutterFragment.ARG_ROUTE
-import io.flutter.view.FlutterView
+import com.meituan.R
 
 /**
  * Created by Edwin,CHEN on 2020/5/19.
  * 为了使用统一的BaseFragment接口，重新定义了FlutterFragment
- * 第一种方案，该方案侵入性太强
+ * 第一种方案，该方案侵入性太强，使用aar包
+ *
  */
 open class ProxyFlutterFragment : BaseFragment() {
-    private var mRoute: String? = "/"
+
+    private var root: View? = null;
 
     companion object {
 
         val TAG: String = ProxyFlutterFragment::class.java.simpleName
 
-        fun createFragment(initialRoute: String): ProxyFlutterFragment {
-            val fragment = ProxyFlutterFragment()
-            val args = Bundle()
-            args.putString(ARG_ROUTE, initialRoute)
-            fragment.arguments = args
-            return fragment
+        fun createFragment(): ProxyFlutterFragment {
+            return ProxyFlutterFragment()
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            mRoute = arguments!!.getString(ARG_ROUTE)
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        root = inflater.inflate(R.layout.fluttter_container_fragment, container, false);
+//		mContext.startActivity(new Intent(mContext, FlutterInterfaceActivity.class));
+        root?.findViewById<TextView>(R.id.open_flutter_activity)?.setOnClickListener {
+            val intent = Intent(context, FlutterInterfaceActivity::class.java)
+            context?.startActivity(intent)
         }
+        return root
     }
 
-    override fun onInflate(context: Context?, attrs: AttributeSet, savedInstanceState: Bundle) {
-        super.onInflate(context, attrs, savedInstanceState)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): FlutterView? {
-        val flutterView :FlutterView =  Flutter.createView(activity!!, lifecycle, mRoute)
-        flutterView.setZOrderOnTop(true)
-        flutterView.holder.setFormat(PixelFormat.TRANSLUCENT)
-        return flutterView
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
-    override fun onFirstFetchData() {
-        super.onFirstFetchData()
-        Log.d(TAG,"****onFirstFetchData()***")
+    override fun onDestroyView() {
+        super.onDestroyView()
+        if (root != null) {
+            root = null
+        }
     }
 }

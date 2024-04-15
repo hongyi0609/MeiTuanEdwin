@@ -18,7 +18,8 @@ description: A new flutter module project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  # sdk: ">=2.1.0 <3.0.0"cd
+  sdk: '3.1.2'
 
 dependencies:
   flutter:
@@ -26,7 +27,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
+  cupertino_icons: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -89,5 +90,6 @@ flutter:
   # They also do not have any bearing on your native host application's
   # identifiers, which may be completely independent or the same as these.
   module:
+    androidX: true
     androidPackage: com.example.my_flutter
     iosBundleIdentifier: com.example.myFlutter

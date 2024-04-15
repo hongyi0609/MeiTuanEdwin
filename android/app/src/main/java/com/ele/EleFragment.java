@@ -52,7 +52,7 @@ public class EleFragment extends BaseFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (mContext == null) {
-            mContext = context;
+            mContext = getContext();
         }
     }
 
@@ -198,6 +198,9 @@ public class EleFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (webView != null) {
+            webView.destroy();
+        }
     }
 
     @Override

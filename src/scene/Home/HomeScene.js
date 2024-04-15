@@ -144,7 +144,7 @@ class HomeScene extends PureComponent<Props, State> {
                 <HomeGridView infos={this.state.discounts} onGridSelected={(this.onGridSelected)} />
                 <SpacingView />
                 <View style={styles.recommendHeader}>
-                    <Heading3>猜你喜欢</Heading3>
+                    <Heading3>猜你喜欢文文</Heading3>
                 </View>
             </View>
         )

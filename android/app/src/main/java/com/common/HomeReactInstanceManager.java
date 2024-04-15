@@ -1,6 +1,6 @@
 package com.common;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.common.react.HomeReactPackage;
 import com.facebook.react.ReactInstanceManager;

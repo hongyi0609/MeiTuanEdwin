@@ -30,7 +30,7 @@ class LayoutState1 extends State<Layout1> {
       children: <Widget>[
         Icon(Icons.star, color: Colors.green[500], size: 12),
         Icon(Icons.star, color: Colors.green[500], size: 12),
-        Icon(Icons.star, color: Colors.green[500], size: 12),
+        Icon(Icons.star, color: Colors.red[500], size: 12),
         Icon(Icons.star, color: Colors.black, size: 12),
         Icon(Icons.star, color: Colors.black, size: 12),
       ],
@@ -164,13 +164,14 @@ class LayoutState1 extends State<Layout1> {
         )),
       ],
     );
-    var container = Container(
+    var container = Expanded(
+        child: Container(
       margin: const EdgeInsets.only(left: 12.0, top: 12.0),
       decoration: BoxDecoration(color: Colors.black26),
       child: Column(
         children: <Widget>[row, row, row, row],
       ),
-    );
+    ));
 
     var rightColumn = Container(
       padding: EdgeInsets.fromLTRB(2.0, 3.0, 2.0, 2.0),
@@ -208,21 +209,21 @@ class LayoutState1 extends State<Layout1> {
       return List<Container>.generate(
         count,
         (int index) => Container(
-                child: Stack(
-              alignment: const Alignment(0.0, 0.9), // 标题居中下
-              children: <Widget>[
-                Image.asset('images/pic${index % 4 + 1}.jpg'),
-                Container(
-                  decoration: BoxDecoration(color: Colors.black45),
-                  child: Text('pic$index',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      )),
-                )
-              ],
-            )),
+            child: Stack(
+          alignment: const Alignment(0.0, 0.9), // 标题居中下
+          children: <Widget>[
+            Image.asset('images/pic${index % 4 + 1}.jpg'),
+            Container(
+              decoration: BoxDecoration(color: Colors.black45),
+              child: Text('pic$index',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  )),
+            )
+          ],
+        )),
       );
     }
 
@@ -233,7 +234,8 @@ class LayoutState1 extends State<Layout1> {
         mainAxisSpacing: 4.0,
         crossAxisSpacing: 4.0,
         children: _buildGridTileList(30),
-        shrinkWrap: true, //解决无限高度问题
+        shrinkWrap: true,
+        //解决无限高度问题
         physics: NeverScrollableScrollPhysics(), //禁用滑动事件
       );
     }
@@ -270,6 +272,16 @@ class LayoutState1 extends State<Layout1> {
         title: Text('Emmy\'s Restaurant',
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0)),
         subtitle: Text('1923 Ocean Ave'),
+        leading: Icon(
+          Icons.restaurant,
+          color: Colors.blue[500],
+        ),
+      ),
+      Divider(indent: 100.0),
+      ListTile(
+        title: Text('Nikki\'s Art Tall',
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0)),
+        subtitle: Text('1988 Flight Ave'),
         leading: Icon(
           Icons.restaurant,
           color: Colors.blue[500],

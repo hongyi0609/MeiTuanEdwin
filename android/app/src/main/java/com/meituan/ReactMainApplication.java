@@ -1,8 +1,12 @@
 package com.meituan;
 
 import android.app.Application;
+import android.content.Context;
+
+import androidx.multidex.MultiDex;
 
 import com.base.BaseApplication;
+import com.common.Constants;
 import com.common.react.HomeReactPackage;
 import com.facebook.infer.annotation.Assertions;
 import com.facebook.react.ReactApplication;
@@ -22,8 +26,15 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-public class ReactMainApplication extends BaseApplication implements ReactApplication {
+import io.flutter.embedding.engine.FlutterEngine;
+import io.flutter.embedding.engine.FlutterEngineCache;
+import io.flutter.embedding.engine.dart.DartExecutor;
 
+public class ReactMainApplication extends BaseApplication implements ReactApplication {
+    // Somewhere in your app, before your FlutterFragment is needed,
+    // like in the Application class ...
+    // Instantiate a FlutterEngine.
+    private FlutterEngine flutterEngine;
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
         @Override
         public boolean getUseDeveloperSupport() {
@@ -33,14 +44,7 @@ public class ReactMainApplication extends BaseApplication implements ReactApplic
         @Override
         protected ReactInstanceManager createReactInstanceManager() {
 //            return super.createReactInstanceManager();
-            ReactInstanceManagerBuilder builder = ReactInstanceManager.builder().
-                    setApplication(ReactMainApplication.this).
-                    setJSMainModulePath(this.getJSMainModuleName()).
-                    setUseDeveloperSupport(this.getUseDeveloperSupport()).
-                    setRedBoxHandler(this.getRedBoxHandler()).
-                    setJavaScriptExecutorFactory(this.getJavaScriptExecutorFactory()).
-                    setUIImplementationProvider(this.getUIImplementationProvider()).
-                    setInitialLifecycleState(LifecycleState.BEFORE_CREATE);
+            ReactInstanceManagerBuilder builder = ReactInstanceManager.builder().setApplication(ReactMainApplication.this).setJSMainModulePath(this.getJSMainModuleName()).setUseDeveloperSupport(this.getUseDeveloperSupport()).setRedBoxHandler(this.getRedBoxHandler()).setJavaScriptExecutorFactory(this.getJavaScriptExecutorFactory()).setUIImplementationProvider(this.getUIImplementationProvider()).setInitialLifecycleState(LifecycleState.BEFORE_CREATE);
 
             for (ReactPackage reactPackage : this.getPackages()) {
                 builder.addPackage(reactPackage);
@@ -58,10 +62,7 @@ public class ReactMainApplication extends BaseApplication implements ReactApplic
 
         @Override
         protected List<ReactPackage> getPackages() {
-            return Arrays.asList(
-                    new MainReactPackage(),
-                    new HomeReactPackage()
-            );
+            return Arrays.asList(new MainReactPackage(), new HomeReactPackage());
         }
 
         @Override
@@ -102,8 +103,25 @@ public class ReactMainApplication extends BaseApplication implements ReactApplic
     }
 
     @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, /* native exopackage */ false);
+        flutterEngine = new FlutterEngine(this);
+        // Configure an initial route.
+        flutterEngine.getNavigationChannel().setInitialRoute(/*"your/route/here"*/Constants.FLUTTER_INITIAL_ROUTE);
+        // Start executing Dart code in the FlutterEngine.
+        flutterEngine.getDartExecutor().executeDartEntrypoint(
+                DartExecutor.DartEntrypoint.createDefault()
+        );
+        // Cache the pre-warmed FlutterEngine to be used later by FlutterFragment.
+        FlutterEngineCache
+                .getInstance()
+                .put("my_engine_id", flutterEngine);
     }
 }

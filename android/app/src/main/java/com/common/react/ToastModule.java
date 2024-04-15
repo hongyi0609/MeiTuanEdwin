@@ -65,7 +65,8 @@ public class ToastModule extends ReactContextBaseJavaModule {
      *     callBack是一种特殊的回调参数，将在原生中的函数结果回传给js.
      *     A native module is supposed to invoke its callback only once. It can, however, store the callback and invoke it later.
 
-     It is very important to highlight that the callback is not invoked immediately after the native function completes - remember that bridge communication is asynchronous, and this too is tied to the run loop.
+     * It is very important to highlight that the callback is not invoked immediately after the native
+     * function completes - remember that bridge communication is asynchronous, and this too is tied to the run loop.
      * </p>
      * @param message
      * @param duration

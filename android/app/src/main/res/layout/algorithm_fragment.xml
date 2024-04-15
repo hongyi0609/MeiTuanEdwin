@@ -3,50 +3,187 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="15dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="15dp">
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
 
-        <android.support.v7.widget.CardView
+        <TextView
+            android:id="@+id/linked_list_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp">
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="链表 demo"
+            android:textColor="@drawable/rxjava_text_color_selector" />
 
-            <TextView
-                android:id="@+id/reverse_list_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="借助列表反转"
-                android:textColor="@drawable/rxjava_text_color_selector" />
+    </androidx.cardview.widget.CardView>
 
-        </android.support.v7.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
 
-        <android.support.v7.widget.CardView
+        <TextView
+            android:id="@+id/reverse_list_display_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp">
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="借助列表反转结果"
+            android:textColor="@drawable/rxjava_text_color_selector" />
 
-            <TextView
-                android:id="@+id/reverse_list_display_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="借助列表反转结果"
-                android:textColor="@drawable/rxjava_text_color_selector" />
+    </androidx.cardview.widget.CardView>
 
-        </android.support.v7.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/array_demo_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="数组"
+            android:textColor="@drawable/rxjava_text_color_selector" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
+
+        <TextView
+            android:id="@+id/double_pointers_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="双子针算法"
+            android:textColor="@drawable/rxjava_text_color_selector" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
+
+        <TextView
+            android:id="@+id/dynamic_programing_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="动态规划算法"
+            android:textColor="@drawable/rxjava_text_color_selector" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
+
+        <TextView
+            android:id="@+id/sliding_window_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="滑动窗口算法"
+            android:textColor="@drawable/rxjava_text_color_selector" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
+
+        <TextView
+            android:id="@+id/binary_tree_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="二叉树"
+            android:textColor="@drawable/rxjava_text_color_selector" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
+
+        <TextView
+            android:id="@+id/array_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="数组"
+            android:textColor="@drawable/rxjava_text_color_selector" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
+
+        <TextView
+            android:id="@+id/huawei_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="华为算法"
+            android:textColor="@drawable/rxjava_text_color_selector" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
+
+        <TextView
+            android:id="@+id/classical_algorithm_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="经典算法"
+            android:textColor="@drawable/rxjava_text_color_selector" />
+
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

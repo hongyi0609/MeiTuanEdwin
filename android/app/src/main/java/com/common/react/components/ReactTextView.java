@@ -8,7 +8,7 @@ import android.view.View;
  * Created by Edwin,CHEN on 2019/10/31.
  */
 
-public class ReactTextView extends android.support.v7.widget.AppCompatTextView implements View.OnClickListener {
+public class ReactTextView extends androidx.appcompat.widget.AppCompatTextView implements View.OnClickListener {
 
 
     private CommonListener commonListener;
